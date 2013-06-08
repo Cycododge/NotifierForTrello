@@ -9,14 +9,16 @@ License: http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US
 		__/  |                                   _/  |
 		|___/                                   |___/
 
-Build: 1.0.3
-Date: 3/1/2013
+Build: 1.0.4
+Date: 6/7/2013
 http://cycododge.com
 http://twitter.com/cycododge
 */
 $(function(){
 /* Definitions */
 	var app = chrome.app.getDetails(), //details about this app
+		lastUnread = 0, //the total unread since last check
+		sndNewNote = new buzz.sound("/snd/newNote.mp3"), //load the sound for new notifications
 		redirectURLtoMatch = 'trello.com', //match this to redirect instead of open new tab
 		storage = chrome.storage.local, //the storage object
 		user_data = chrome.extension.getBackgroundPage().user_data || {}, //contains object of user data
@@ -64,7 +66,6 @@ $(function(){
 document.title = app.name+' v'+app.version+' Popup'; //set the title of the page
 $('#login .title').text(app.name+' v'+app.version); //set the text when asking to login
 
-
 /* Events */
 
 	//if the login button has been pressed
@@ -98,7 +99,7 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 			for(var n in note_data){ if(note_data[n].id == note.attr('id')){ note_data[n].unread = false; break; } } //make object unread
 			if(filters.unread){ note.slideUp(400); } //if showing unread notes, remove this note.
 		}
-		update_unread(); //update user on number of unread notes
+		update_unread(true); //update user on number of unread notes
 		if(filters.unread){ $('#viewing_count .total').text($('.note.unread').length); } //if showing unread notes, update total output
 	});
 
@@ -262,10 +263,28 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 	};
 
 	//update the total of unread notes on the page and badge
-	function update_unread(){
+	function update_unread(suppressSound){
 		//find each unread note
 		var unread_count = 0;
 		$.each($('.note.unread'),function(){ unread_count++; }); //add to total count of unread items
+
+		//load the last unread total
+		storage.get('lastUnread',function(data){
+			//load data if it exists
+			if(data.hasOwnProperty('lastUnread')){ lastUnread = data.lastUnread; }
+
+			//did the amount change from the last check?
+			if(lastUnread < unread_count){
+				//try playing a sound to notify the user
+				storage.get('sound',function(data){	if(data.sound && !suppressSound){ sndNewNote.play(); }});
+			}
+
+			//update the new total
+			lastUnread = unread_count;
+			storage.set({'lastUnread':lastUnread});
+		});
+
+
 		if(unread_count > 0){
 			chrome.browserAction.setBadgeText({text:String(unread_count)}); //update unread count
 		}else{
@@ -289,7 +308,30 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 		});
 	}
 
+	$('#viewing_count').on('click','.twitter.sound',function(){
+		//get status of sound
+		storage.get('sound',function(v){
+			//if the value is false (or doesn't exist), turn it off
+			if(!v.sound){
+				storage.set({'sound':true});
+				$('.twitter.sound .status').text('On');
+			}else{
+				storage.set({'sound':false});
+				$('.twitter.sound .status').text('Off');
+			}
+		});
+	});
+
 /* Page Initialization */
 	//if logged in, start the script
 	Trello.authorize({interactive:false,success:init});
+
+	//determine if sound if on/off and set appropriately
+	storage.get('sound',function(v){
+		if(v.sound){
+			$('.twitter.sound .status').text('On');
+		}else{
+			$('.twitter.sound .status').text('Off');
+		}
+	});
 });

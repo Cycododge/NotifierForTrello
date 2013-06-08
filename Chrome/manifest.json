@@ -1,6 +1,6 @@
 {
 	"name": "Notifier for Trello",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "View, filter, and save your Trello notifications as read or unread.",
 	"background": {
 		"page":"background.html"

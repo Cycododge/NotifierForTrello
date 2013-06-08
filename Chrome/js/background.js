@@ -9,11 +9,12 @@ License: http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US
          __/ |                                   __/ |
         |___/                                   |___/
 
-Build: 1.0.3
-Date: 3/1/2013
+Build: 1.0.4
+Date: 6/7/2013
 http://cycododge.com
 http://twitter.com/cycododge
 */
+
 
 /* Definitions */
 var request_limit = 50, //number of notes to return
@@ -23,7 +24,9 @@ var request_limit = 50, //number of notes to return
 	_popup = 'popup.html', //the file name of the popup page
 	app = chrome.app.getDetails(), //manifest description
 	storage = chrome.storage.local, //the local storage object
-	refresh_time = 60 * refresh_minutes * 1000; //refresh data in X seconds
+	refresh_time = 60 * refresh_minutes * 1000, //refresh data in X seconds
+	sndNewNote = new buzz.sound("/snd/newNote.mp3"), //load the sound for new notifications
+	lastUnread = 0; //total unread notes since last check
 
 /* Immediate Actions */
 document.title = app.name+' v'+app.version+' Background'; //set the title of the page
@@ -114,8 +117,11 @@ function get_notes(update){ //filters: all, unread, update
 						if(update){console.log('Update Event - Getting New Data');
 							get_notes(); //re-call this function to get recent [request_limit] notes
 						}else{console.log('Request Event - Output Data');
-							note_data = data; //update global object
-							if(popup()){ popup().output(data); }else{ update_badge(); } //update the data on the popup
+							//update global object
+							note_data = data;
+
+							//update the data on the popup or badge
+							if(popup()){ popup().output(data); }else{ update_badge(); }
 						}
 					}else{
 						console.log('Nothing New Found');
@@ -149,6 +155,23 @@ function update_badge(){
 	for(var i in note_data){
 		if(note_data[i].unread){ count++; }
 	}
+
+	//get the saved value from lastupdate
+	storage.get('lastUnread',function(data){
+		//load the value if it exists
+		if(data.hasOwnProperty('lastUnread')){ lastUnread = data.lastUnread; }
+
+		//did the amount change from the last check?
+		if(lastUnread < count){
+			//try playing a sound to notify the user
+			storage.get('sound',function(data){	if(data.sound){	sndNewNote.play(); }});
+		}
+
+		//update the new total
+		lastUnread = count;
+		storage.set({'lastUnread':lastUnread});
+	});
+
 
 	if(count){
 		chrome.browserAction.setBadgeText({text:String(count)});
