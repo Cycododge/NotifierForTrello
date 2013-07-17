@@ -15,7 +15,7 @@
       "js/jquery.js",
       "js/trello.custom.js",
       "js/buzz.js",
-      "js/background.js"
+      "background.js"
     ],
     "persistent": true
   },
@@ -29,23 +29,23 @@
     "tabs",
     "https://*.trello.com/*",
     "storage"
-  ],
-  "content_scripts": [
-    {
-      "matches": [
-        "https://www.google.com/*"
-      ],
-      "css": [
-        "css/inject.css"
-      ]
-    },
-    {
-      "matches": [
-        "https://www.google.com/*"
-      ],
-      "js": [
-        "js/inject.js"
-      ]
-    }
-  ]
+  ]//,
+  // "content_scripts": [
+  //   {
+  //     "matches": [
+  //       "https://www.google.com/*"
+  //     ],
+  //     "css": [
+  //       "css/inject.css"
+  //     ]
+  //   },
+  //   {
+  //     "matches": [
+  //       "https://www.google.com/*"
+  //     ],
+  //     "js": [
+  //       "js/inject.js"
+  //     ]
+  //   }
+  // ]
 }
