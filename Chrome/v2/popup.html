@@ -4,15 +4,21 @@
 		<style>
 			html { background-color: #000; }
 			body { background-color: #fff; height: 500px; width: 400px; margin: 0; }
-			#nav { height: 40px; border-bottom: 1px solid #000; }
+			#nav { overflow: auto; border-bottom: 1px solid #000; }
+			#nav .btn { border: 1px solid #000; border-radius: 4px; padding: 3px 6px; margin: 5px; }
+			#nav .btn:hover { background-color: #ccc; cursor: pointer; }
+			#nav .btnFilters { float: left; }
+			#nav .btnSettings { float: right; }
+			#filters { border: 1px solid #000; position: absolute; width: 30px; height: 99%; }
+			#settings { border: 1px solid #000; }
 		</style>
 	</head>
 	<body>
 		<div id="filters"></div>
 		<div id="settings"></div>
 		<div id="nav">
-			<div class="btnFilters"></div>
-			<div class="btnSettings">@Cycododge</div>
+			<div class="btn btnFilters">=</div>
+			<div class="btn btnSettings">@Cycododge</div>
 		</div>
 		<div id="notes"></div>
 	</body>
