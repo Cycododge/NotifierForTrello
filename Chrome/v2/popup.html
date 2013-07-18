@@ -3,23 +3,78 @@
 	<head>
 		<style>
 			html { background-color: #000; }
-			body { background-color: #fff; height: 500px; width: 400px; margin: 0; }
-			#nav { overflow: auto; border-bottom: 1px solid #000; }
-			#nav .btn { border: 1px solid #000; border-radius: 4px; padding: 3px 6px; margin: 5px; }
-			#nav .btn:hover { background-color: #ccc; cursor: pointer; }
-			#nav .btnFilters { float: left; }
-			#nav .btnSettings { float: right; }
-			#filters { border: 1px solid #000; position: absolute; width: 30px; height: 99%; }
-			#settings { border: 1px solid #000; }
+			body { background-color: #fff; width: 400px; margin: 0; }
+			.clear { clear: both; }
+			#nav { background-color: #eee; border-bottom: 1px solid #000; width: 100%; }
+			#nav .search { float: left; }
+			#nav .btnUserMenu { border: 1px solid #000; border-radius: 4px; padding: 3px 6px; margin: 5px; float: right; position: relative; }
+			#nav .btnUserMenu:hover { background-color: #ccc; cursor: pointer; }
+			#filters { display: inline-block; background-color: #ddd; border-right: 1px solid #000; height: 500px; }
+			#filters .filter { padding: 3px; }
+			#filters .filter:hover, #filters .filter.active { background-color: #999; cursor: pointer; }
+			#filters .icon { display: inline-block; width: 20px; height: 20px; border: #000 solid 1px; }
+			#filters .text { display: none; }
+			#userMenu { position: absolute; border: 1px solid #000; width: 100%; background-color: #f00; left: -1px; display: none; top: 100%; }
+			#userMenu .btn:hover { background-color: #fff; }
+			/*#notes { width: 100%; height: 100%; position: absolute; top: 0; background-color: :; }*/
 		</style>
 	</head>
 	<body>
-		<div id="filters"></div>
-		<div id="settings"></div>
 		<div id="nav">
-			<div class="btn btnFilters">=</div>
-			<div class="btn btnSettings">@Cycododge</div>
+			<div class="search"><input type="search"></div>
+			<div class="btnUserMenu">
+				<span class="userName">@Cycododge</span>
+				<div id="userMenu">
+					<div class="btn">Logout</div>
+					<div class="btn btnSettings">Settings</div>
+					<div class="btn">Refresh</div>
+					<div class="btn">Website</div>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div id="filters">
+			<div class="filter active">
+				<span class="icon"></span>
+				<span class="text">No Filters</span>
+			</div>
+			<div class="filter">
+				<span class="icon"></span>
+				<span class="text">Board One</span>
+			</div>
+			<div class="filter">
+				<span class="icon"></span>
+				<span class="text">Board Two</span>
+			</div>
+		</div>
+		<div id="settings">
+			<div class="setting" data-index="0">
+				<span class="status"><input type="checkbox"></span>
+				<span class="text">Auto-Update</span>
+			</div>
+			<div class="setting" data-index="1">
+				<span class="status"><input type="checkbox"></span>
+				<span class="text">Show Dates</span>
+			</div>
+			<div class="setting" data-index="2">
+				<span class="status"><input type="checkbox"></span>
+				<span class="text">Submit Unknown Types</span>
+			</div>
+			<div class="setting" data-index="3">
+				<span class="status"><input type="number"></span>
+				<span class="text">Update Interval</span>
+			</div>
+			<div class="setting" data-index="4">
+				<span class="status"><input type="checkbox"></span>
+				<span class="text">Sound</span>
+			</div>
+			<div class="setting" data-index="5">
+				<span class="status"><input type="checkbox"></span>
+				<span class="text">Auto-Update</span>
+			</div>
 		</div>
 		<div id="notes"></div>
+		<script src="js/jquery.js"></script>
+		<script src="js/popup.js"></script>
 	</body>
 </html>
