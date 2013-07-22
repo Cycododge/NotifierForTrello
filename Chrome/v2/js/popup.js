@@ -13,11 +13,20 @@ Build: 2.0.0
 Date: 7/20/2013
 http://cycododge.com
 http://twitter.com/cycododge
+
+INITIALIZE
+	variable declarations
+EVENTS
+	open/close filters menu
+	user menu
+	open settings menu
+	close settings menu
+FUNCTIONS
 */
 
 (function($){
 	/* INITIALIZE */
-
+	var _background = chrome.extension.getBackgroundPage();
 
 
 	/* EVENTS */

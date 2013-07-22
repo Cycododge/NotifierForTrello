@@ -37,7 +37,7 @@ http://twitter.com/cycododge
 			#nav .search { float: left; }
 			#nav .btnUserMenu { border: 1px solid #000; border-radius: 4px; padding: 3px 6px; margin: 5px; float: right; position: relative; }
 			#nav .btnUserMenu:hover { background-color: #ccc; cursor: pointer; }
-			#filters { display: inline-block; background-color: #ddd; border-right: 1px solid #000; height: 500px; }
+			#filters { max-width: 50%; float: left; display: inline-block; background-color: #ddd; border-right: 1px solid #000; height: 500px; }
 			#filters .filter { padding: 3px; }
 			#filters .filter:hover, #filters .filter.active { background-color: #999; cursor: pointer; }
 			#filters .icon { display: inline-block; width: 20px; height: 20px; border: #000 solid 1px; }
@@ -73,12 +73,23 @@ http://twitter.com/cycododge
 			</div>
 			<div class="filter">
 				<span class="icon"></span>
-				<span class="text">Board One</span>
+				<span class="text">what happens if this is a really long board name</span>
 			</div>
 			<div class="filter">
 				<span class="icon"></span>
 				<span class="text">Board Two</span>
 			</div>
+		</div>
+		<div id="notes">
+			<div class="note">This is a Notification full of lots of super important information.</div>
+			<div class="note">Notification</div>
+			<div class="note">Notification</div>
+			<div class="note">Notification</div>
+			<div class="note">Notification</div>
+			<div class="note">Notification</div>
+			<div class="note">Notification</div>
+			<div class="note">Notification</div>
+			<div class="note">Notification</div>
 		</div>
 		<div id="settings">
 			<div class="header">Save Settings >></div>
@@ -103,7 +114,6 @@ http://twitter.com/cycododge
 				<label for="set-audioNote">New Note Sound</label>
 			</div>
 		</div>
-		<div id="notes"></div>
 		<script src="js/jquery.js"></script>
 		<script src="js/popup.js"></script>
 	</body>
