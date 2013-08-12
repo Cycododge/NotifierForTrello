@@ -17,3 +17,7 @@ Dev Log
 =================
 
 Currently Hosted on Trello @ https://trello.com/board/notifier-for-trello/503843cb600165bf360244a2
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/Cycododge/NotifierForTrello/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
