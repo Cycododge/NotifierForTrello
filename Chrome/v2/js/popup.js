@@ -26,7 +26,9 @@ FUNCTIONS
 
 (function($){
 	/* INITIALIZE */
-	var _background = chrome.extension.getBackgroundPage();
+	if(chrome.extension){
+		var _background = chrome.extension.getBackgroundPage();
+	}
 
 
 	/* EVENTS */
