@@ -9,8 +9,8 @@ License: http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US
 		__/  |                                   _/  |
 		|___/                                   |___/
 
-Build: 1.0.4
-Date: 6/7/2013
+Build: 1.0.5
+Date: 1/8/2014
 http://cycododge.com
 http://twitter.com/cycododge
 */
@@ -70,7 +70,8 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 
 	//if the login button has been pressed
 	$('#auth_button').on('click',function(){
-		chrome.tabs.create({url:chrome.extension.getURL('options.html')});
+		// chrome.tabs.create({url:chrome.extension.getURL('options.html')});
+		chrome.extension.getBackgroundPage().login(); //login
 	});
 
 	//log the user out

@@ -9,8 +9,8 @@ License: http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US
          __/ |                                   __/ |
         |___/                                   |___/
 
-Build: 1.0.4
-Date: 6/7/2013
+Build: 1.0.5
+Date: 1/9/2014
 http://cycododge.com
 http://twitter.com/cycododge
 */
@@ -42,13 +42,40 @@ function loginCheck(){
 
 	//try connecting
 	Trello.authorize({
-		interactive:false,
+		interactive:false, //check locally for token
 		success:auth_success,
 		error:auth_error
 	});
 }loginCheck();
 
 /* Functions */
+
+//take the user through the login process
+function login(){
+	//request authorization
+	Trello.authorize({
+		expiration:'never',
+		persist:true,
+		type:'chromeTab', //open in a new tab
+		redirect_uri:'http://trello.com',
+		scope:{read:true,write:true,account:true},
+		name:app.name+' v'+app.version
+	});
+
+	//determine when the user logs in
+	chrome.tabs.onUpdated.addListener(function(id,whatChanged,tab){
+		//if page found with token
+		if(tab.url.indexOf('https://trello.com/token=') >= 0){
+			var token = tab.url.split(/[&#]?token=([0-9a-f]{64})/)[1]; //parse out token
+			if(!token){ return; } //exit here if token wasn't found
+			Trello.setToken(token); //successfully logged in
+			storage.set({'loginStatus':true}); //successfully logged in
+			loginCheck(); //start the next step
+			chrome.tabs.remove(id); //close tab
+		}
+	});
+}
+
 //user is not logged in
 function auth_error(){
 	console.log('Error logging in.');
