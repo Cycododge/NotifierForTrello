@@ -134,7 +134,7 @@ function get_notes(update){ //filters: all, unread, update
 
 		Trello.get(
 			'members/me/notifications', //path
-			{filter:"all",limit:my_limit,page:0}, //input parameters
+			{ filter:'all', limit:my_limit, page:0 }, //input parameters
 			function(data){ //on success
 				//if we have no pre-existing notes
 				if($.isEmptyObject(note_data)){
