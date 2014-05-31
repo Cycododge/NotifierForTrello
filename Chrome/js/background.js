@@ -91,14 +91,20 @@ function auth_success(){
 }
 
 //returns the popup page
-function popup(){
+function popup(fn){
+	var view = null; //cache
+
 	//loop through the available pages
 	for(var i in chrome.extension.getViews()){
-		page = chrome.extension.getViews()[i];
-		if(page.location.href == chrome.extension.getURL(_popup)){
-			return page;
-		}
+		var check = chrome.extension.getViews()[i]; //cache this result
+		if(check.location.href == chrome.extension.getURL(_popup)){ view = check; break; } //if found, save match.
 	}
+
+	//if no view found OR no function passed, give a response.
+	if(!view || !fn){ return view; }
+
+	//run any passed function and pass in the view context
+	fn.call(view);
 }
 
 //retrieve user information
