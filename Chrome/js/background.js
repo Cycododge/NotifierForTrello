@@ -118,7 +118,6 @@ function member_data(){
 
 //retrieve list of notifications
 function get_notes(update){ //filters: all, unread, update
-	console.log('Update Check: '+new Date());
 	var my_limit = update ? 1 : request_limit; //if only updating, just get the last note
 
 	//if browser is offline - come back around in refresh_time to see if connection is back
