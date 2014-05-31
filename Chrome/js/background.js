@@ -161,8 +161,6 @@ function get_notes(update){ //filters: all, unread, update
 			},
 			//on fail
 			function(){
-				console.log('Error Refreshing Data');
-
 				//check for more notes in refresh_time
 				setTimeout(get_notes,refresh_time);
 			}
