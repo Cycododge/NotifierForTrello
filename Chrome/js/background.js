@@ -196,9 +196,6 @@ function update_badge(){
 	});
 
 
-	if(count){
-		chrome.browserAction.setBadgeText({text:String(count)});
-	}else{
-		chrome.browserAction.setBadgeText({text:''});
-	}
+	//update the badge text
+	chrome.browserAction.setBadgeText({text:String(count || '')});
 }
