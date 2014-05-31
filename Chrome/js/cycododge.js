@@ -156,24 +156,7 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 			if(filters.unread && !note.unread){ continue; } //unread; skip read notes
 
 			//build the HTML object
-			html.append('<div class="message"></div>'); //message
-				html.find('.message').append('<span class="unknown_type">Unsupported Note Type: '+note.type+'</span> '); //
-				html.find('.message').append('<span class="user_gone"></span> '); //who made the note
-				html.find('.message').append('<span class="action"></span> '); //the note type (action)
-				html.find('.message').append('<span class="attached"></span> '); //the item that was attached
-				html.find('.message').append('<span class="checked"></span> '); //the item that was checked
-				html.find('.message').append('<span class="text-on-card">on</span> '); //text = on
-				html.find('.message').append('<span class="text-to">to</span> '); //text = to
-				html.find('.message').append('<a class="card_name"></a> '); //card name
-				html.find('.message').append('<span class="text-in">in</span> '); //text = in
-				html.find('.message').append('<span class="list_name"></span> '); //list moved to
-				html.find('.message').append('<span class="text-on-board">on</span> '); //text = on
-				html.find('.message').append('<a class="board_name"></a> '); //board name
-				html.find('.message').append('<a class="organization"></a> '); //organization name
-				html.find('.message').append('<pre class="mention"></pre> '); //mention wrappper
-			html.append('<div class="info"></div>'); //info
-				html.find('.info').append('<div class="timestamp"></div>'); //date
-				html.find('.info').append('<div class="status"><div class="help">Mark Unread</div><div class="check"></div></div>');
+			html.append('<div class="message"><span class="unknown_type">Unsupported Note Type: '+note.type+'</span> <span class="user_gone"></span> <span class="action"></span> <span class="attached"></span> <span class="checked"></span> <span class="text-on-card">on</span> <span class="text-to">to</span> <a class="card_name"></a> <span class="text-in">in</span> <span class="list_name"></span> <span class="text-on-board">on</span> <a class="board_name"></a> <a class="organization"></a> <pre class="mention"></pre> </div><div class="info"><div class="timestamp"></div><div class="status"><div class="help">Mark Unread</div><div class="check"></div></div></div>'); //message
 
 			//insert data
 			if(note.id){ html.attr('id',note.id); } //set the note id
