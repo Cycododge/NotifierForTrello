@@ -19,6 +19,7 @@ $(function(){
 		sndNewNote = new buzz.sound("/snd/newNote.mp3"), //load the sound for new notifications
 		redirectURLtoMatch = 'trello.com', //match this to redirect instead of open new tab
 		storage = chrome.storage.local, //the storage object
+		bkg = chrome.extension.getBackgroundPage(), //references to the background page
 		user_data = chrome.extension.getBackgroundPage().user_data || {}, //contains object of user data
 		note_data = {}, //contains object of note data
 		note_structures = [ //list of classes to show
