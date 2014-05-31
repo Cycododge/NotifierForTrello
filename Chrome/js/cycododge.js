@@ -176,7 +176,7 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 				html.find('.info').append('<div class="status"><div class="help">Mark Unread</div><div class="check"></div></div>');
 
 			//insert data
-			try{ html.attr('id',note.id); }catch(e){} //set the note id
+			if(note.id){ html.attr('id',note.id); } //set the note id
 			try{ //who made the note
 				html.find('.message .user_gone').replaceWith('<a class="user" href="http://trello.com/'+note.memberCreator.username+'">'+note.memberCreator.fullName+'</a>');
 			}catch(e){
