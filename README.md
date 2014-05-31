@@ -1,4 +1,4 @@
-# Notifier for Trello v1.0.5
+# Notifier for Trello
 
 Chrome extension to view and filter your Trello notifications.
 
@@ -33,27 +33,27 @@ Please contact me here ( http://twitter.com/cycododge ).
 
 ## Release Notes
 
-v1.0.5 - 1/9/2014
+1/9/2014
 
 - Fix for login issues.
 
-v1.0.4 - 6/7/2013
+6/7/2013
 
 - Added option to play sound when a new notification arrives.
 - Now available on GitHub ( https://github.com/Cycododge/NotifierForTrello )
 
-v1.0.3 - 3/1/2013
+3/1/2013
 
 - Fixed the "fix" implemented in v1.0.2.
 - Links now replace current tab if on Trello.
 - Added a link to the Trello dev log.
 - Now checks to see if connected to the internet before checking for new data, fixing issue requiring logout/login to get new notifications.
 
-v1.0.2 - 2/15/2013
+2/15/2013
 
 - Now uses local storage to detect if logged in.
 
-v1.0.1 - 10/04/2012
+10/04/2012
 
 - Support for two more notification types.
 - Wrong dates displayed for notifications.
