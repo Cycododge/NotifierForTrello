@@ -150,7 +150,7 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 		//loop though notes
 		for(var index in notes){
 			var note = notes[index], //cache this note
-				$note = $('<div class="note"></div>'); //create the html object
+				$note = $('<div class="note" id="'+note.id+'"></div>'); //create the html object
 
 			//validate note against filters
 			if(filters.unread && !note.unread){ continue; } //unread; skip read notes
@@ -158,13 +158,13 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 			//build a message
 			$note.append('<div class="message"><span class="unknown_type">Unsupported Note Type: '+note.type+'</span> <span class="user_gone"></span> <span class="action"></span> <span class="attached"></span> <span class="checked"></span> <span class="text-on-card">on</span> <span class="text-to">to</span> <a class="card_name"></a> <span class="text-in">in</span> <span class="list_name"></span> <span class="text-on-board">on</span> <a class="board_name"></a> <a class="organization"></a> <pre class="mention"></pre> </div><div class="info"><div class="timestamp"></div><div class="status"><div class="help">Mark Unread</div><div class="check"></div></div></div>');
 
-			//insert data
-			if(note.id){ $note.attr('id',note.id); } //set the note id
-			try{ //who made the note
+			//if user details exist (not deleted from Trello system)
+			if(note.memberCreator && note.memberCreator.username && note.memberCreator.fullName){
 				$note.find('.message .user_gone').replaceWith('<a class="user" href="http://trello.com/'+note.memberCreator.username+'">'+note.memberCreator.fullName+'</a>');
-			}catch(e){
+			}else{
 				$note.find('.message .user_gone').text('[someone]'); //format for non-existing user
 			}
+
 			try{ $note.find('.message .action').text(note_types[note.type].text); }catch(e){} //type of note
 			try{ //item attached
 				if(note.type == 'addedAttachmentToCard'){
