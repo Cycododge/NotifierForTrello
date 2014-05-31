@@ -123,7 +123,6 @@ function get_notes(update){ //filters: all, unread, update
 
 	//if browser is offline - come back around in refresh_time to see if connection is back
 	if(!navigator.onLine){
-		console.log('No Connection');
 		setTimeout(get_notes,refresh_time);
 		return;
 	}
@@ -138,24 +137,22 @@ function get_notes(update){ //filters: all, unread, update
 			{filter:"all",limit:my_limit,page:0}, //input parameters
 			function(data){ //on success
 				//if we have no pre-existing notes
-				if($.isEmptyObject(note_data)){console.log('No Existing Data - Populating');
+				if($.isEmptyObject(note_data)){
 					note_data = data; //update global object
 					if(popup()){ popup().output(data); }else{ update_badge(); } //update the data on the popup
 				}else{
 					//if we have new data
-					if(/*note_data[0].id != data[0].id*/true){console.log('New Data Found');
+					if(/*note_data[0].id != data[0].id*/true){
 						//was this an update check?
-						if(update){console.log('Update Event - Getting New Data');
+						if(update){
 							get_notes(); //re-call this function to get recent [request_limit] notes
-						}else{console.log('Request Event - Output Data');
+						}else{
 							//update global object
 							note_data = data;
 
 							//update the data on the popup or badge
 							if(popup()){ popup().output(data); }else{ update_badge(); }
 						}
-					}else{
-						console.log('Nothing New Found');
 					}
 				}
 
