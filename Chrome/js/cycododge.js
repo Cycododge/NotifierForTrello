@@ -139,9 +139,10 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 	}
 
 	//output the notes to the screen
-	window.output = function(notes,new_filters){
+	window.output = function(notes,new_filters){ console.log(notes, new_filters);
 		note_data = notes; //update global object
 		$('#data').empty(); //clear the current set of notes
+		var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig; //detect url
 
 		//if new filters were passed, update current
 		for(var i in new_filters){ filters[i] = new_filters[i]; }
@@ -184,7 +185,6 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 			try{ html.find('.message .action').text(note_types[note.type].text); }catch(e){} //type of note
 			try{ //item attached
 				if(note.type == 'addedAttachmentToCard'){
-					var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig; //detect url
 					//if the name contains a URL, keep it short.
 					var name_output = (note.data.name.match(urlRegex) ? (note.data.url.length > 25 ? note.data.name.slice(0,22)+'...' : name.data.url) : note.data.name);
 					html.find('.message .attached').html('<a href="'+note.data.url+'">'+name_output+'</a>'); //output data
@@ -194,7 +194,7 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 			}
 			try{ //item checked (also contains note.data.state == 'complete'. Keep an eye out for other states.
 				if(note.type == 'updateCheckItemStateOnCard'){
-					var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig; //detect url
+
 					//if the name contains a URL, format it and keep it short.
 					var name_output = note.data.name.replace(urlRegex,function(url){
 						return '<a href="'+url+'">'+(url.length > 25 ? url.slice(0,22)+'...' : url)+'</a>';
