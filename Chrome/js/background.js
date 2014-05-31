@@ -33,7 +33,6 @@ document.title = app.name+' v'+app.version+' Background'; //set the title of the
 function loginCheck(){
 	//check for a connection first
 	if(!navigator.onLine){
-		console.log('No Connnection');
 		setTimeout(loginCheck,refresh_time); //check again in refresh_time
 		return; //exit the function
 	}
@@ -45,6 +44,7 @@ function loginCheck(){
 		error:auth_error
 	});
 }loginCheck();
+
 
 /* Functions */
 
@@ -76,15 +76,12 @@ function login(){
 
 //user is not logged in
 function auth_error(){
-	console.log('Error logging in.');
-	// storage.set({'loginStatus':false}); //if Trello doesn't think we're logged in, reset here.
 	chrome.browserAction.setBadgeText({text:'?'}); //indicate there is an error
 	chrome.browserAction.setTitle({title:app.name+' v'+app.version+' - Authorization Needed'}); //give some descriptive text
 }
 
 //user is logged in
 function auth_success(){
-	// storage.set({'loginStatus':true}); //set the user as logged in
 	chrome.browserAction.setBadgeText({text:''}); //clear out any previous text
 	chrome.browserAction.setTitle({title:app.name+' v'+app.version+' - Logged In'}); //Reset Title
 	member_data(); //load the logged in user
@@ -110,7 +107,6 @@ function popup(fn){
 //retrieve user information
 function member_data(){
 	Trello.members.get("me", function(member){
-		//console.log(member);
 		user_data = member; //make available to other functions
 		get_notes(); //make initial call to get all notes
 	});
@@ -193,7 +189,6 @@ function update_badge(){
 		lastUnread = count;
 		storage.set({'lastUnread':lastUnread});
 	});
-
 
 	//update the badge text
 	chrome.browserAction.setBadgeText({text:String(count || '')});
