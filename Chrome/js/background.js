@@ -154,7 +154,7 @@ function get_notes(update){ //filters: all, unread, update
 				}
 
 				//process complete, hide the loading animation
-				if(popup()){ popup().$('#loader img').fadeOut(); }
+				popup(function(){ this.$('#loader img').fadeOut(); });
 
 				//check for more notes in refresh_time
 				setTimeout(get_notes,refresh_time);
