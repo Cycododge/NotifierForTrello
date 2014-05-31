@@ -150,30 +150,30 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 		//loop though notes
 		for(var index in notes){
 			var note = notes[index], //cache this note
-				html = $('<div class="note"></div>'); //create the html object
+				$note = $('<div class="note"></div>'); //create the html object
 
 			//validate note against filters
 			if(filters.unread && !note.unread){ continue; } //unread; skip read notes
 
 			//build a message
-			html.append('<div class="message"><span class="unknown_type">Unsupported Note Type: '+note.type+'</span> <span class="user_gone"></span> <span class="action"></span> <span class="attached"></span> <span class="checked"></span> <span class="text-on-card">on</span> <span class="text-to">to</span> <a class="card_name"></a> <span class="text-in">in</span> <span class="list_name"></span> <span class="text-on-board">on</span> <a class="board_name"></a> <a class="organization"></a> <pre class="mention"></pre> </div><div class="info"><div class="timestamp"></div><div class="status"><div class="help">Mark Unread</div><div class="check"></div></div></div>');
+			$note.append('<div class="message"><span class="unknown_type">Unsupported Note Type: '+note.type+'</span> <span class="user_gone"></span> <span class="action"></span> <span class="attached"></span> <span class="checked"></span> <span class="text-on-card">on</span> <span class="text-to">to</span> <a class="card_name"></a> <span class="text-in">in</span> <span class="list_name"></span> <span class="text-on-board">on</span> <a class="board_name"></a> <a class="organization"></a> <pre class="mention"></pre> </div><div class="info"><div class="timestamp"></div><div class="status"><div class="help">Mark Unread</div><div class="check"></div></div></div>');
 
 			//insert data
-			if(note.id){ html.attr('id',note.id); } //set the note id
+			if(note.id){ $note.attr('id',note.id); } //set the note id
 			try{ //who made the note
-				html.find('.message .user_gone').replaceWith('<a class="user" href="http://trello.com/'+note.memberCreator.username+'">'+note.memberCreator.fullName+'</a>');
+				$note.find('.message .user_gone').replaceWith('<a class="user" href="http://trello.com/'+note.memberCreator.username+'">'+note.memberCreator.fullName+'</a>');
 			}catch(e){
-				html.find('.message .user_gone').text('[someone]'); //format for non-existing user
+				$note.find('.message .user_gone').text('[someone]'); //format for non-existing user
 			}
-			try{ html.find('.message .action').text(note_types[note.type].text); }catch(e){} //type of note
+			try{ $note.find('.message .action').text(note_types[note.type].text); }catch(e){} //type of note
 			try{ //item attached
 				if(note.type == 'addedAttachmentToCard'){
 					//if the name contains a URL, keep it short.
 					var name_output = (note.data.name.match(urlRegex) ? (note.data.url.length > 25 ? note.data.name.slice(0,22)+'...' : name.data.url) : note.data.name);
-					html.find('.message .attached').html('<a href="'+note.data.url+'">'+name_output+'</a>'); //output data
+					$note.find('.message .attached').html('<a href="'+note.data.url+'">'+name_output+'</a>'); //output data
 				}
 			}catch(e){
-				html.find('.message .attached').html('<span class="unknown">[unknown]</span>'); //don't know what the attachment is
+				$note.find('.message .attached').html('<span class="unknown">[unknown]</span>'); //don't know what the attachment is
 			}
 			try{ //item checked (also contains note.data.state == 'complete'. Keep an eye out for other states.
 				if(note.type == 'updateCheckItemStateOnCard'){
@@ -182,20 +182,20 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 					var name_output = note.data.name.replace(urlRegex,function(url){
 						return '<a href="'+url+'">'+(url.length > 25 ? url.slice(0,22)+'...' : url)+'</a>';
 					});
-					html.find('.message .checked').html(name_output); //output data
+					$note.find('.message .checked').html(name_output); //output data
 				}
 			}catch(e){
-				html.find('.message .checked').html('<span class="unknown">[unknown]</span>'); //don't know what the checked item is
+				$note.find('.message .checked').html('<span class="unknown">[unknown]</span>'); //don't know what the checked item is
 			}
-			try{ html.find('.message .card_name').text(note.data.card.name).attr('href','http://trello.com/card/'+note.data.board.id+'/'+note.data.card.idShort); }catch(e){} //the card the action happened on
-			try{ html.find('.message .list_name').text(note.data.listAfter.name); }catch(e){} //name of list card moved to
-			try{ html.find('.message .list_name').text(note.data.list.name); }catch(e){} //name of list
-			try{ html.find('.message .board_name').text(note.data.board.name).attr('href','http://trello.com/board/'+note.data.board.id); }catch(e){} //the board the note belongs to
-			try{ html.find('.message .organization').text(note.data.organization.name).attr('href','http://trello.com/'+note.data.organization.id); }catch(e){} //link to organization
+			try{ $note.find('.message .card_name').text(note.data.card.name).attr('href','http://trello.com/card/'+note.data.board.id+'/'+note.data.card.idShort); }catch(e){} //the card the action happened on
+			try{ $note.find('.message .list_name').text(note.data.listAfter.name); }catch(e){} //name of list card moved to
+			try{ $note.find('.message .list_name').text(note.data.list.name); }catch(e){} //name of list
+			try{ $note.find('.message .board_name').text(note.data.board.name).attr('href','http://trello.com/board/'+note.data.board.id); }catch(e){} //the board the note belongs to
+			try{ $note.find('.message .organization').text(note.data.organization.name).attr('href','http://trello.com/'+note.data.organization.id); }catch(e){} //link to organization
 			try{ //parse @user's and the message - apply to tag
 				var msg = note.data.text.replace(/@[a-z]+/gi,function(user){ return '<span class="at other">'+user+'</span>'; }), //style all mentions
 					msg = msg.replace('other">@'+user_data.username,'me">@'+user_data.username); //style my mentions
-				html.find('.message .mention').html(msg); //output text
+				$note.find('.message .mention').html(msg); //output text
 			}catch(e){}
 			try{ //format and output the date
 				var date = new Date(note.date), //convert to date object
@@ -206,13 +206,13 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 					day = date.getDate(),
 					year = date.getFullYear(),
 					output = month + '/' + day + '/' + year + ' @ ' + (hour == 0 ? '12':hour) + ':' + minutes + ampm; //build the string
-				html.find('.info .timestamp').text(output);
+				$note.find('.info .timestamp').text(output);
 			}catch(e){} //date
 			if(!note.unread){ //determine if unread
-				html.find('.info .status .check').addClass('marked');
+				$note.find('.info .status .check').addClass('marked');
 			}else{
-				html.addClass('unread'); //specify unread class for styling
-				html.find('.info .help').text('Mark Read'); //change help text on .info hover
+				$note.addClass('unread'); //specify unread class for styling
+				$note.find('.info .help').text('Mark Read'); //change help text on .info hover
 			}
 
 			//if this note has a structure
@@ -220,19 +220,19 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 				if(note_types[note.type].structure){
 				//loop through note structure
 					for(var ind in note_types[note.type].structure){
-						html.find('.message .'+note_types[note.type].structure[ind]).show(); //make visisble
+						$note.find('.message .'+note_types[note.type].structure[ind]).show(); //make visisble
 					}
 				}else{
 					console.log(note);
 				}
 			}catch(e){
-				html.find('.message .card_name').show();
-				html.find('.message .unknown_type').append('<br />').show();
+				$note.find('.message .card_name').show();
+				$note.find('.message .unknown_type').append('<br />').show();
 				console.log(note); //log a note that has no programmed structure
 			}
 
 			//output note to user
-			$('#data').append(html);
+			$('#data').append($note);
 		}
 
 		//update note counts
