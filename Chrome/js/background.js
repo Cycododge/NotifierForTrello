@@ -141,18 +141,15 @@ function get_notes(update){ //filters: all, unread, update
 					note_data = data; //update global object
 					if(popup()){ popup().output(data); }else{ update_badge(); } //update the data on the popup
 				}else{
-					//if we have new data
-					if(/*note_data[0].id != data[0].id*/true){
-						//was this an update check?
-						if(update){
-							get_notes(); //re-call this function to get recent [request_limit] notes
-						}else{
-							//update global object
-							note_data = data;
+					//was this an update check?
+					if(update){
+						get_notes(); //re-call this function to get recent [request_limit] notes
+					}else{
+						//update global object
+						note_data = data;
 
-							//update the data on the popup or badge
-							if(popup()){ popup().output(data); }else{ update_badge(); }
-						}
+						//update the data on the popup or badge
+						if(popup()){ popup().output(data); }else{ update_badge(); }
 					}
 				}
 
