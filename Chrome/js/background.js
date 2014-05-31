@@ -14,17 +14,22 @@ http://twitter.com/cycododge
 */
 
 
-/* Definitions */
+/* Declarations */
+
+//user
 var request_limit = 50, //number of notes to return
 	refresh_minutes = 1, //amount of minutes to wait before next refresh
+	_popup = 'popup.html', //the file name of the popup page
+	refresh_time = 60 * refresh_minutes * 1000; //refresh data in X seconds
+
+//system
+var sndNewNote = new buzz.sound("/snd/newNote.mp3"), //load the sound for new notifications
 	user_data = {}, //contains object of user data
 	note_data = {}, //contains object of note data
-	_popup = 'popup.html', //the file name of the popup page
 	app = chrome.app.getDetails(), //manifest description
 	storage = chrome.storage.local, //the local storage object
-	refresh_time = 60 * refresh_minutes * 1000, //refresh data in X seconds
-	sndNewNote = new buzz.sound("/snd/newNote.mp3"), //load the sound for new notifications
 	lastUnread = 0; //total unread notes since last check
+
 
 /* Immediate Actions */
 document.title = app.name+' v'+app.version+' Background'; //set the title of the page
