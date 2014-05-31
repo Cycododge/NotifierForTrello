@@ -20,7 +20,7 @@ $(function(){
 		redirectURLtoMatch = 'trello.com', //match this to redirect instead of open new tab
 		storage = chrome.storage.local, //the storage object
 		bkg = chrome.extension.getBackgroundPage(), //references to the background page
-		user_data = chrome.extension.getBackgroundPage().user_data || {}, //contains object of user data
+		user_data = bkg.user_data || {}, //contains object of user data
 		note_data = {}, //contains object of note data
 		note_structures = [ //list of classes to show
 		/*0*/['user','user_gone','action','card_name','text-on-board','board_name'],
@@ -70,13 +70,13 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 	//if the login button has been pressed
 	$('#auth_button').on('click',function(){
 		// chrome.tabs.create({url:chrome.extension.getURL('options.html')});
-		chrome.extension.getBackgroundPage().login(); //login
+		bkg.login(); //login
 	});
 
 	//log the user out
 	$('#btn_logout').on('click',function(){
 		Trello.deauthorize(); //logout of popup
-		chrome.extension.getBackgroundPage().Trello.deauthorize(); //logout from background
+		bkg.Trello.deauthorize(); //logout from background
 		chrome.browserAction.setBadgeText({text:'?'}); //indicate there is an error
 		chrome.browserAction.setTitle({title:app.name+' - Authorization Needed'});
 		$('#logged_in,#logged_out').toggle(); //hide #logged_in and show #logged_out
@@ -136,7 +136,7 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 
 	//output cards
 	function init(){
-		output(chrome.extension.getBackgroundPage().note_data);
+		output(bkg.note_data);
 		$('#logged_in,#logged_out').toggle(); //hide #logged_out and show #logged_in
 	}
 
