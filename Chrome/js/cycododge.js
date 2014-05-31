@@ -19,6 +19,7 @@ $(function(){
 		sndNewNote = new buzz.sound("/snd/newNote.mp3"), //load the sound for new notifications
 		redirectURLtoMatch = 'trello.com', //match this to redirect instead of open new tab
 		storage = chrome.storage.local, //the storage object
+		$dom = $(document), //DOM cache
 		bkg = chrome.extension.getBackgroundPage(), //references to the background page
 		user_data = bkg.user_data || {}, //contains object of user data
 		note_data = {}, //contains object of note data
@@ -68,13 +69,10 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 /* Events */
 
 	//if the login button has been pressed
-	$('#auth_button').on('click',function(){
-		// chrome.tabs.create({url:chrome.extension.getURL('options.html')});
-		bkg.login(); //login
-	});
+	$dom.on('click','#auth_button',bkg.login);
 
 	//log the user out
-	$('#btn_logout').on('click',function(){
+	$dom.on('click','#btn_logout',function(){
 		Trello.deauthorize(); //logout of popup
 		bkg.Trello.deauthorize(); //logout from background
 		chrome.browserAction.setBadgeText({text:'?'}); //indicate there is an error
@@ -83,7 +81,7 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 	});
 
 	//perform actions when marking note as read/unread
-	$('#data').on('click','.info',function(){
+	$dom.on('click','#data .info',function(){
 		var toggle = $(this).find('.check'), //cache this <input>
 			note = $(this).parent('.note'); //the note wrapper
 		//make card unread
@@ -104,7 +102,7 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 	});
 
 	//mark all notes as read
-	$('#btn_mark_all').on('click',function(){
+	$dom.on('click','#btn_mark_all',function(){
 		//for each unread note only
 		$.each($('.note.unread'),function(){
 			$(this).find('.info').click(); //perform the click action
@@ -112,21 +110,21 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 	});
 
 	//display only unread notes
-	$('#filter_unread').on('click',function(){
+	$dom.on('click','#filter_unread',function(){
 		$(this).hide(); //hide this button
 		$('#filter_all').show(); //replace with filter all button
 		output(note_data,{unread:true}); //set the filter
 	});
 
 	//display all notes
-	$('#filter_all').on('click',function(){
+	$dom.on('click','#filter_all',function(){
 		$(this).hide(); //hide this button
 		$('#filter_unread').show(); //replace with filter all button
 		output(note_data,{unread:false});
 	});
 
 	//for links on notes, get the href and go there through goToUrl();
-	$('#data').on('click','.note a',function(e){ console.log($(this).attr('href'));
+	$dom.on('click','#data .note a',function(e){ console.log($(this).attr('href'));
 		e.preventDefault(); //don't follow the link
 		goToUrl($(this).attr('href')); //navigate to the link
 	});
