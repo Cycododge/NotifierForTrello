@@ -144,9 +144,7 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 		$('#data').empty(); //clear the current set of notes
 
 		//if new filters were passed, update current
-		for(var i in new_filters){
-			filters[i] = new_filters[i];
-		}
+		for(var i in new_filters){ filters[i] = new_filters[i]; }
 
 		//loop though notes
 		for(var index in notes){
