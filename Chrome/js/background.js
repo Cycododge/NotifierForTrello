@@ -131,7 +131,7 @@ function get_notes(update){ //filters: all, unread, update
 	//if we're logged in
 	if(Trello.authorized()){
 		//send request
-		if(popup()){ popup().$('#loader img').fadeIn(); } //show the loading animation
+		popup(function(){ this.$('#loader img').fadeIn(); }); //show the loading animation
 
 		Trello.get(
 			'members/me/notifications', //path
