@@ -9,8 +9,6 @@ License: http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US
 		__/  |                                   _/  |
 		|___/                                   |___/
 
-Build: 1.0.5
-Date: 1/8/2014
 http://cycododge.com
 http://twitter.com/cycododge
 */
