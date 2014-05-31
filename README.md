@@ -59,6 +59,3 @@ v1.0.1 - 10/04/2012
 - Wrong dates displayed for notifications.
 - Styled mentions.
 - Fixed broken links to attached items.
-
-
-![Screenshot](https://lh4.googleusercontent.com/6janhTWI-ENrwegqHTzayNDiLOxdlONuG6fK_jGZP-KmGTha_zDOSt1ltoF1P2hnH2ZqvBAraw=s640-h400-e365-rw)
