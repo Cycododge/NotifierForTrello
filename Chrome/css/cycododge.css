@@ -1,12 +1,12 @@
 /*
 License: http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US
-  _____                        _             _              
- / ____|                      | |           | |             
-| |     _   _   ___  ___    __| |  ___    __| |  __ _   ___ 
+  _____                        _             _
+ / ____|                      | |           | |
+| |     _   _   ___  ___    __| |  ___    __| |  __ _   ___
 | |    | | | | / __|/ _ \  / _` | / _ \  / _` | / _` | / _ \
 | |____| |_| || (__| (_) || (_| || (_) || (_| || (_| ||  __/
  \_____|\__, | \___|\___/  \__,_| \___/  \__,_| \__, | \___|
-         __/ |                                   __/ |      
+         __/ |                                   __/ |
         |___/                                   |___/
 
 Build: 1.0.1
@@ -15,11 +15,44 @@ http://cycododge.com
 http://twitter.com/cycododge
 */
 
-* { margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; font-size:14px; overflow:auto; }
-img { border:0; }
+* {
+    margin:0;
+    padding:0;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:14px;
+    overflow:auto;
+}
 
-#container { width:400px; margin:10px auto 0; text-align:center; }
-.button { background:#28739F; padding:3px 5px; cursor:pointer; border-radius:3px; color:#fff; font-weight:bold; margin:5px; text-decoration:none; }
+img {
+    border:0;
+}
+
+#header .sound {
+    text-decoration: none;
+    color: #000;
+}
+
+#header .sound:hover {
+    text-decoration: underline;
+}
+
+#container {
+    width:400px;
+    text-align:center;
+    padding: 20px 15px 5px 15px;
+}
+
+.button {
+    background: #28739F;
+    padding: 3px 5px;
+    margin: 5px 0px;
+    cursor: pointer;
+    border-radius: 3px;
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
 .button:hover { background:#3D94C7; }
 
 #login { margin:20px 0; }
@@ -32,14 +65,27 @@ img { border:0; }
 #filter_all { display:none; }
 #btn_mark_all { float:right; }
 
-#data { margin:4px auto; height:450px; width:90%; padding:3px; border:1px solid #000; background:#ccc; border-radius:4px; }
-	#data .note { border:1px solid #000; border-radius:3px; margin:2px auto; background:#F6F6F6; }
-	#data .note.unread { background:#DFEDFF; }
-	#data .note:hover { border:1px solid #BEDBFF; }
+#data {
+    margin:4px auto;
+    height:450px;
+    padding:3px;
+}
+
+#data .note {
+    border:1px solid #000;
+    border-radius:3px;
+    margin:2px auto;
+    background:#F6F6F6;
+}
+
+#data .note.unread {
+    background:#DFEDFF;
+}
 		#data .message { font-size:13px; padding:3px; overflow:hidden; }
 			#data .message .checked { font-style:italic; }
 			#data .message a { color:#E35555; font-size:inherit; text-decoration:none; }
 				#data .message a:hover { text-decoration:underline; }
+
 			#data .message .user_gone, #data .message .unknown { color:#BBB9B9; font-size:inherit; }
 			#data .message .unknown_type,
 			#data .message .user,
@@ -69,12 +115,27 @@ img { border:0; }
 			#data .message .mention .at.me { background:#28739F; }
 			#data .message .mention .at.other { background:#ccc; }
 			#data .message .unknown_type { font-size:10px; color:#BBB9B9; }
-		#data .info { margin-top:10px; }
-		#data .info:hover { cursor:pointer; }
+
+#data .info {
+    margin-top: 5px;
+}
+#data .info:hover {
+    cursor: pointer;
+}
+
 			#data .info .timestamp { float:left; margin:0 0 0 7px; font-size:10px; color:#BBB9B9; }
 			#data .info .status { float:right; margin:0 7px 0 0; }
-				#data .info .help { margin-right:7px; color:#900; font-size:11px; display:none; }
-				#data .info:hover .help { display:inline-block; }
+
+#data .info .help {
+    margin-right: 7px;
+    color: #BBB9B9;
+    font-size: 11px;
+    display: inline-block;
+}
+#data .info:hover .help {
+    color: #900;
+}
+
 				#data .info .check { width:13px; height:13px; display:inline-block; background:url(../img/unchecked.png); }
 				#data .info .marked { background:url(../img/checked.png); }
 
@@ -84,7 +145,5 @@ img { border:0; }
 		#loader img { margin-top:7px; position:absolute; display:none; }
 	#unread_count { float:right; background:#E35555; cursor:default; }
 		#unread_count.zero { background:#038313; }
-	#viewing_count { display:inline-block; /*margin-top:15px;*/ font-size:10px; }
+	#viewing_count { display:inline-block; margin-top:10px; font-size:11px; }
 		#viewing_count .total { font-size:inherit; }
-		#viewing_count .twitter { text-decoration:none; font-size:10px; color:#E35555; }
-			#viewing_count .twitter:hover { color:#000; }

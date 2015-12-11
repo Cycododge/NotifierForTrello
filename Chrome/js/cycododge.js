@@ -287,7 +287,7 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 		});
 	}
 
-	$('#viewing_count').on('click','.twitter.sound',function(){
+	$('#header').on('click','.twitter.sound',function(){
 		//get status of sound
 		storage.get('sound',function(v){
 			//if the value is false (or doesn't exist), turn it off
