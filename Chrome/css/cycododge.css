@@ -84,7 +84,5 @@ img { border:0; }
 		#loader img { margin-top:7px; position:absolute; display:none; }
 	#unread_count { float:right; background:#E35555; cursor:default; }
 		#unread_count.zero { background:#038313; }
-	#viewing_count { display:inline-block; /*margin-top:15px;*/ font-size:10px; }
+	#viewing_count { display:inline-block; margin-top:10px; font-size:11px; }
 		#viewing_count .total { font-size:inherit; }
-		#viewing_count .twitter { text-decoration:none; font-size:10px; color:#E35555; }
-			#viewing_count .twitter:hover { color:#000; }
