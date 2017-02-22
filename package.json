@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Cycododge/NotifierForTrello/issues"
   },
-  "homepage": "https://github.com/Cycododge/NotifierForTrello#readme"
+  "homepage": "https://github.com/Cycododge/NotifierForTrello#readme",
+  "dependencies": {
+    "angular": "^1.6.2"
+  }
 }
