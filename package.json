@@ -20,6 +20,7 @@
   "homepage": "https://github.com/Cycododge/NotifierForTrello#readme",
   "dependencies": {
     "angular": "^1.6.2",
+    "angular-ui-router": "^0.4.2",
     "bootstrap": "^4.0.0-alpha.6"
   },
   "devDependencies": {

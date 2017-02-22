@@ -29,7 +29,8 @@ var source = {
 			// paths.dev + '**/component.js'
 		],
 		vendor: [
-			// paths.vendor + 'angular/angular.min.js'
+			paths.vendor + 'angular/angular.min.js',
+			paths.vendor + 'angular-ui-router/release/angular-ui-router.min.js',
 			paths.dev + 'js/jquery.js',
 			paths.dev + 'js/trello.custom.js',
 			paths.dev + 'js/buzz.js'
