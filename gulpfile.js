@@ -15,7 +15,7 @@ var paths = {
 };
 var source = {
 	css: [
-		// paths.vendor + 'bootstrap/dist/css/boostrap.min.css',
+		paths.vendor + 'bootstrap/dist/css/bootstrap.min.css',
 		paths.dev + 'css/cycododge.css'
 	],
 	js: {
