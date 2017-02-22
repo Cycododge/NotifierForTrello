@@ -1,0 +1,20 @@
+{
+  "name": "notifier_for_trello",
+  "version": "1.0.6",
+  "description": "Chrome extension to view and filter your Trello notifications.",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://cycododge@github.com/Cycododge/NotifierForTrello.git"
+  },
+  "author": "Cycododge",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cycododge/NotifierForTrello/issues"
+  },
+  "homepage": "https://github.com/Cycododge/NotifierForTrello#readme"
+}
