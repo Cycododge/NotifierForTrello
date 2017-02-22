@@ -4,7 +4,8 @@
   "description": "Chrome extension to view and filter your Trello notifications.",
   "main": "index.js",
   "scripts": {
-    "start": "npm install",
+    "start": "npm install && gulp bundle_dev && gulp watch_dev",
+	"build": "npm install && gulp bundle_dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,5 +20,8 @@
   "homepage": "https://github.com/Cycododge/NotifierForTrello#readme",
   "dependencies": {
     "angular": "^1.6.2"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1"
   }
 }

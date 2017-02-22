@@ -1,0 +1,180 @@
+//imports
+var gulp = require('gulp');
+// var concatCSS = require('gulp-concat-css');
+// var minifyCSS = require('gulp-clean-css');
+// var concatJS = require('gulp-concat');
+// var minifyJS = require('gulp-uglify');
+// var pump = require('pump');
+// var templateCache = require('gulp-angular-templatecache');
+
+//file locations
+var paths = {
+	dev: './src/', //files for development
+	dist: './dist/', //files for production
+	vendor: './node_modules/' //3rd party files
+};
+var source = {
+	css: [
+		paths.dev + 'css/cycododge.css'
+	],
+	js: {
+		app: [
+			//app init
+			paths.dev + 'js/cycododge.js',
+
+			//services
+			// paths.dev + 'services/*.js',
+
+			//components
+			// paths.dev + '**/component.js'
+		],
+		vendor: [
+			paths.vendor + 'angular/angular.min.js'
+		]
+	},
+	templates: [
+		//all html templates
+		// paths.dev + '**/*.html',
+
+		//EXCEPT the index.html
+		// '!' + paths.dev + 'index.html'
+	],
+	forDist: [
+		//core files
+		paths.dev + 'manifest.json',
+		paths.dev + 'popup.html',
+		paths.dev + 'background.html',
+
+		//CSS
+		paths.dev + 'css/cycododge.css',
+
+		//JS
+		paths.dev + 'js/*.js',
+
+		//images
+		paths.dev + 'img/*.+(svg|png|jpg|gif)',
+
+		//sounds
+		paths.dev + 'snd/*.+(mp3)'
+	]
+};
+
+//public tasks
+gulp.task('bundle_dev',['copy_to_dist']);
+// gulp.task('bundle_dev',['copy_to_dist','concat_templates','concat_app_js','concat_vendor_js','concat_css']);
+// gulp.task('bundle_prod',['copy_to_dist','minify_templates','minify_app_js','minify_vendor_js','minify_css']);
+gulp.task('watch_dev', watch_dev);
+
+//private tasks
+// gulp.task('concat_app_js', concat_app_js);
+// gulp.task('concat_vendor_js', concat_vendor_js);
+// gulp.task('minify_app_js', ['concat_app_js'], minify_app_js);
+// gulp.task('minify_vendor_js', ['concat_vendor_js'], minify_vendor_js);
+// gulp.task('concat_css', concat_css);
+// gulp.task('minify_css', ['concat_css'], minify_css);
+// gulp.task('concat_templates', concat_templates);
+// gulp.task('minify_templates', ['concat_templates'], minify_templates);
+gulp.task('copy_to_dist', copy_to_dist);
+
+
+//////////////////////// FUNCTIONS ////////////////////////
+
+//tasks to run after initial setup for development
+function watch_dev() {
+	//re-build the bundles on file changes
+	detectChanges();
+}
+
+//watch for file changes and re-bundle
+function detectChanges(){
+	// gulp.watch(source.js.app, ['concat_app_js']).on('change', onChange);
+	// gulp.watch(source.js.vendor, ['concat_vendor_js']).on('change', onChange);
+	// gulp.watch(source.css, ['concat_css']).on('change', onChange);
+	// gulp.watch(source.templates, ['concat_templates']).on('change', onChange);
+	gulp.watch(source.forDist, ['copy_to_dist']).on('change', onChange);
+
+	//log file that changed
+	function onChange(change) {
+		//split up the path to get the file name
+		var splitUpPath = change.path.split('/');
+
+		//log the file detected
+		console.log('"' + splitUpPath[splitUpPath.length - 1] + '" was ' + change.type);
+	}
+}
+
+//merge html files into template
+function concat_templates(){
+	return gulp.src(source.templates)
+	.pipe(templateCache({
+		module: 'app'
+	}))
+	.pipe(gulp.dest(paths.dist + 'bundles/'));
+}
+
+//minify template bundle
+function minify_templates(cb){
+	pump([
+		gulp.src(paths.dev + 'bundles/templates.js'),
+		minifyJS(),
+		gulp.dest(paths.dist + 'bundles/')
+	], cb);
+}
+
+//merge app js files together
+function concat_app_js(cb){
+	pump([
+		gulp.src(source.js.app),
+		concatJS('app.js'),
+		gulp.dest(paths.dist + 'bundles/')
+	], cb);
+}
+
+//merge vendor js files together
+function concat_vendor_js(cb){
+	pump([
+		gulp.src(source.js.vendor),
+		concatJS('vendor.js'),
+		gulp.dest(paths.dist + 'bundles/')
+	], cb);
+}
+
+//minify the app js bundle
+function minify_app_js(cb){
+	pump([
+		gulp.src(paths.dist + 'bundles/app.js'),
+		minifyJS(),
+		gulp.dest(paths.dist + 'bundles/')
+	], cb);
+}
+
+//minify the vendor js bundle
+function minify_vendor_js(cb){
+	pump([
+		gulp.src(paths.dist + 'bundles/vendor.js'),
+		minifyJS(),
+		gulp.dest(paths.dist + 'bundles/')
+	], cb);
+}
+
+//merge css files together
+function concat_css(){
+	return gulp.src(source.css)
+	.pipe(concatCSS('app.css'))
+	.pipe(gulp.dest(paths.dist + 'bundles/'));
+}
+
+//minify the css bundle
+function minify_css() {
+	return gulp.src(paths.dist + 'bundles/app.css')
+	.pipe(minifyCSS({
+		keepSpecialComments: 0
+	}))
+	.pipe(gulp.dest(paths.dist + 'bundles/'));
+}
+
+//copies source files needed for the dist folder
+function copy_to_dist() {
+	return gulp.src(source.forDist, { base: paths.dev })
+	.pipe(gulp.dest(paths.dist));
+}

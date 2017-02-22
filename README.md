@@ -20,7 +20,12 @@ Install from [here](https://chrome.google.com/webstore/detail/notifier-for-trell
 
 ## Local Install
 
-Navigate to *chrome://extensions*, enable *Developer mode*, and click "Load unpacked extension...".
+- [Node.js](https://nodejs.org) must be installed
+- Run `npm run build` from command line in context of project folder
+- In Chrome, navigate to `chrome://extensions`
+- Enable *Developer mode*
+- Click "Load unpacked extension..."
+- Select `dist/` folder within project
 
 
 ## Support
