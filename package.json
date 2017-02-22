@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm install && gulp bundle_dev && gulp watch_dev",
-	"build": "npm install && gulp bundle_dev",
+    "build": "npm install && gulp bundle_dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/Cycododge/NotifierForTrello#readme",
   "dependencies": {
-    "angular": "^1.6.2"
+    "angular": "^1.6.2",
+    "bootstrap": "^4.0.0-alpha.6"
   },
   "devDependencies": {
     "gulp": "^3.9.1"
