@@ -1,10 +1,10 @@
 //imports
 var gulp = require('gulp');
+var pump = require('pump');
+var concatJS = require('gulp-concat');
 var concatCSS = require('gulp-concat-css');
 // var minifyCSS = require('gulp-clean-css');
-var concatJS = require('gulp-concat');
 // var minifyJS = require('gulp-uglify');
-var pump = require('pump');
 
 //file locations
 var paths = {
@@ -63,9 +63,9 @@ gulp.task('watch_dev', watch_dev);
 //private tasks
 gulp.task('concat_app_js', concat_app_js);
 gulp.task('concat_vendor_js', concat_vendor_js);
+gulp.task('concat_css', concat_css);
 // gulp.task('minify_app_js', ['concat_app_js'], minify_app_js);
 // gulp.task('minify_vendor_js', ['concat_vendor_js'], minify_vendor_js);
-gulp.task('concat_css', concat_css);
 // gulp.task('minify_css', ['concat_css'], minify_css);
 gulp.task('copy_to_dist', copy_to_dist);
 
