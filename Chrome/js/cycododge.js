@@ -1,17 +1,3 @@
-/*
-License: http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US
-  _____                        _             _
- / ____|                      | |           | |
-| |     _   _   ___  ___    __| |  ___    __| |  __ _   ___
-| |    | | | | / __|/ _ \  / _` | / _ \  / _` | / _` | / _ \
-| |____| |_| || (__| (_) || (_| || (_) || (_| || (_| ||  __/
- \_____|\__, | \___|\___/  \__,_| \___/  \__,_| \__, | \___|
-		__/  |                                   _/  |
-		|___/                                   |___/
-
-http://cycododge.com
-http://twitter.com/cycododge
-*/
 $(function(){
 /* Definitions */
 	var app = chrome.app.getDetails(), //details about this app
