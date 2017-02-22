@@ -5,7 +5,6 @@ var concatCSS = require('gulp-concat-css');
 var concatJS = require('gulp-concat');
 // var minifyJS = require('gulp-uglify');
 var pump = require('pump');
-// var templateCache = require('gulp-angular-templatecache');
 
 //file locations
 var paths = {
@@ -36,13 +35,6 @@ var source = {
 			paths.dev + 'js/buzz.js'
 		]
 	},
-	templates: [
-		//all html templates
-		// paths.dev + '**/*.html',
-
-		//EXCEPT the index.html
-		// '!' + paths.dev + 'index.html'
-	],
 	forDist: [
 		//core files
 		paths.dev + 'manifest.json',
@@ -64,8 +56,8 @@ var source = {
 };
 
 //public tasks
-gulp.task('bundle_dev',['copy_to_dist'/*,'concat_templates'*/,'concat_app_js','concat_vendor_js','concat_css']);
-// gulp.task('bundle_prod',['copy_to_dist','minify_templates','minify_app_js','minify_vendor_js','minify_css']);
+gulp.task('bundle_dev',['copy_to_dist','concat_app_js','concat_vendor_js','concat_css']);
+// gulp.task('bundle_prod',['copy_to_dist','minify_app_js','minify_vendor_js','minify_css']);
 gulp.task('watch_dev', watch_dev);
 
 //private tasks
@@ -75,8 +67,6 @@ gulp.task('concat_vendor_js', concat_vendor_js);
 // gulp.task('minify_vendor_js', ['concat_vendor_js'], minify_vendor_js);
 gulp.task('concat_css', concat_css);
 // gulp.task('minify_css', ['concat_css'], minify_css);
-gulp.task('concat_templates', concat_templates);
-// gulp.task('minify_templates', ['concat_templates'], minify_templates);
 gulp.task('copy_to_dist', copy_to_dist);
 
 
@@ -93,7 +83,6 @@ function detectChanges(){
 	// gulp.watch(source.js.app, ['concat_app_js']).on('change', onChange);
 	// gulp.watch(source.js.vendor, ['concat_vendor_js']).on('change', onChange);
 	// gulp.watch(source.css, ['concat_css']).on('change', onChange);
-	// gulp.watch(source.templates, ['concat_templates']).on('change', onChange);
 	gulp.watch(source.forDist, ['copy_to_dist']).on('change', onChange);
 
 	//log file that changed
@@ -104,24 +93,6 @@ function detectChanges(){
 		//log the file detected
 		console.log('"' + splitUpPath[splitUpPath.length - 1] + '" was ' + change.type);
 	}
-}
-
-//merge html files into template
-function concat_templates(){
-	return gulp.src(source.templates)
-	.pipe(templateCache({
-		module: 'app'
-	}))
-	.pipe(gulp.dest(paths.dist + 'bundles/'));
-}
-
-//minify template bundle
-function minify_templates(cb){
-	pump([
-		gulp.src(paths.dev + 'bundles/templates.js'),
-		minifyJS(),
-		gulp.dest(paths.dist + 'bundles/')
-	], cb);
 }
 
 //merge app js files together
