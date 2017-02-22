@@ -1,10 +1,10 @@
 //imports
 var gulp = require('gulp');
-// var concatCSS = require('gulp-concat-css');
+var concatCSS = require('gulp-concat-css');
 // var minifyCSS = require('gulp-clean-css');
-// var concatJS = require('gulp-concat');
+var concatJS = require('gulp-concat');
 // var minifyJS = require('gulp-uglify');
-// var pump = require('pump');
+var pump = require('pump');
 // var templateCache = require('gulp-angular-templatecache');
 
 //file locations
@@ -15,12 +15,13 @@ var paths = {
 };
 var source = {
 	css: [
+		// paths.vendor + 'bootstrap/dist/css/boostrap.min.css',
 		paths.dev + 'css/cycododge.css'
 	],
 	js: {
 		app: [
 			//app init
-			paths.dev + 'js/cycododge.js',
+			paths.dev + 'js/cycododge.js'
 
 			//services
 			// paths.dev + 'services/*.js',
@@ -29,7 +30,10 @@ var source = {
 			// paths.dev + '**/component.js'
 		],
 		vendor: [
-			paths.vendor + 'angular/angular.min.js'
+			// paths.vendor + 'angular/angular.min.js'
+			paths.dev + 'js/jquery.js',
+			paths.dev + 'js/trello.custom.js',
+			paths.dev + 'js/buzz.js'
 		]
 	},
 	templates: [
@@ -46,10 +50,10 @@ var source = {
 		paths.dev + 'background.html',
 
 		//CSS
-		paths.dev + 'css/cycododge.css',
+		// paths.dev + 'css/cycododge.css',
 
 		//JS
-		paths.dev + 'js/*.js',
+		paths.dev + 'js/background.js',
 
 		//images
 		paths.dev + 'img/*.+(svg|png|jpg|gif)',
@@ -60,19 +64,18 @@ var source = {
 };
 
 //public tasks
-gulp.task('bundle_dev',['copy_to_dist']);
-// gulp.task('bundle_dev',['copy_to_dist','concat_templates','concat_app_js','concat_vendor_js','concat_css']);
+gulp.task('bundle_dev',['copy_to_dist'/*,'concat_templates'*/,'concat_app_js','concat_vendor_js','concat_css']);
 // gulp.task('bundle_prod',['copy_to_dist','minify_templates','minify_app_js','minify_vendor_js','minify_css']);
 gulp.task('watch_dev', watch_dev);
 
 //private tasks
-// gulp.task('concat_app_js', concat_app_js);
-// gulp.task('concat_vendor_js', concat_vendor_js);
+gulp.task('concat_app_js', concat_app_js);
+gulp.task('concat_vendor_js', concat_vendor_js);
 // gulp.task('minify_app_js', ['concat_app_js'], minify_app_js);
 // gulp.task('minify_vendor_js', ['concat_vendor_js'], minify_vendor_js);
-// gulp.task('concat_css', concat_css);
+gulp.task('concat_css', concat_css);
 // gulp.task('minify_css', ['concat_css'], minify_css);
-// gulp.task('concat_templates', concat_templates);
+gulp.task('concat_templates', concat_templates);
 // gulp.task('minify_templates', ['concat_templates'], minify_templates);
 gulp.task('copy_to_dist', copy_to_dist);
 
