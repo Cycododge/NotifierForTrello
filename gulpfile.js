@@ -19,14 +19,17 @@ var source = {
 	],
 	js: {
 		app: [
-			//app init
-			paths.dev + 'js/cycododge.js'
+			//new app init
+			paths.dev + 'views/app/app.js',
+
+			//old app init
+			paths.dev + 'js/cycododge.js',
 
 			//services
 			// paths.dev + 'services/*.js',
 
 			//components
-			// paths.dev + '**/component.js'
+			paths.dev + '**/component.js'
 		],
 		vendor: [
 			paths.vendor + 'angular/angular.min.js',
@@ -42,10 +45,10 @@ var source = {
 		paths.dev + 'popup.html',
 		paths.dev + 'background.html',
 
-		//CSS
-		// paths.dev + 'css/cycododge.css',
+		//html templates
+		paths.dev + '**/template.html',
 
-		//JS
+		//background js
 		paths.dev + 'js/background.js',
 
 		//images
@@ -81,9 +84,9 @@ function watch_dev() {
 
 //watch for file changes and re-bundle
 function detectChanges(){
-	// gulp.watch(source.js.app, ['concat_app_js']).on('change', onChange);
-	// gulp.watch(source.js.vendor, ['concat_vendor_js']).on('change', onChange);
-	// gulp.watch(source.css, ['concat_css']).on('change', onChange);
+	gulp.watch(source.js.app, ['concat_app_js']).on('change', onChange);
+	gulp.watch(source.js.vendor, ['concat_vendor_js']).on('change', onChange);
+	gulp.watch(source.css, ['concat_css']).on('change', onChange);
 	gulp.watch(source.forDist, ['copy_to_dist']).on('change', onChange);
 
 	//log file that changed

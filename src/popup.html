@@ -3,10 +3,13 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title></title>
 		<link rel="stylesheet" type="text/css" href="bundles/app.css">
 	</head>
-	<body>
+	<body ng-app="app" ng-strict-di>
+
+		<div class="container-fluid m-0" hidden>
+			<ui-view class="d-block px-0 py-3"><!-- Views Injected Here --></ui-view>
+		</div>
 
 		<div id="container">
 			<div id="logged_out">
