@@ -2,6 +2,10 @@
 	cursor: pointer;
 }
 
+.cursor-default {
+	cursor: default;
+}
+
 body {
 	width: 450px;
 }

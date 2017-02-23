@@ -1,5 +1,15 @@
+<!-- Header -->
+<div class="row mb-2">
+	<div class="col">
+		<!-- <span class="btn btn-secondary text-gray-dark btn-sm cursor-pointer">&#9776;</span> -->
+	</div>
+	<div class="col text-right">
+		<span class="btn btn-secondary btn-sm cursor-default">@Cycododge</span>
+	</div>
+</div>
+
 <!-- header buttons -->
-<div class="row mb-3">
+<div class="row mb-3" hidden>
 	<div class="col">
 		<!-- Unread Notes Only -->
 		<button ng-if="!vm.filter" ng-click="vm.filter = { urnead: true }" type="button" class="btn btn-info btn-sm cursor-pointer">View Unread Only</button>
@@ -14,14 +24,25 @@
 
 <!-- content -->
 <div class="row mb-2">
-	<div class="col">
+	<!-- Menu Container -->
+	<div class="col-1">
+		<!-- Menu Expansion Container -->
+		<div ng-class="{ 'expanded-menu card': vm.expandMenu }" ng-mouseleave="vm.expandMenu = false">
+			<!-- Menu Options -->
+			<div ng-mouseenter="vm.expandMenu = true" ng-repeat="btn in [{ count: 4, text: 'Show All' }]">
+				<button class="btn btn-sm btn-secondary cursor-pointer mb-1">{{btn.count}} {{vm.expandMenu ? ' | ' + btn.text : ''}}</button>
+			</div>
+		</div>
+	</div>
 
+	<!-- Notes Container -->
+	<div class="col-11">
+		<!-- A Note -->
 		<div class="card mb-1" ng-repeat="note in vm.notes | filter:vm.filter">
 			<div class="card-block">
 				{{note.data.text}}
 			</div>
 		</div>
-
 	</div>
 </div>
 
@@ -31,6 +52,6 @@
 		<button type="button" class="btn btn-info btn-sm cursor-pointer" ng-click="vm.fn.logout()">Logout</button>
 	</div>
 	<div class="col text-right">
-		<span class="btn btn-info btn-sm disabled">0 Unread</span>
+		<!-- <span class="btn btn-info btn-sm disabled">0 Unread</span> -->
 	</div>
 </div>

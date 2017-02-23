@@ -1,0 +1,10 @@
+.expanded-menu {
+	position: absolute;
+	z-index: 1;
+	background: #fff;
+	border-left: 0;
+	border-top: 0;
+	padding-right: 1rem;
+	padding-bottom: .5rem;
+	box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.2);
+}
