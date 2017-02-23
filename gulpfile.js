@@ -24,7 +24,7 @@ var source = {
 			paths.dev + 'views/app/app.js',
 
 			//old app init
-			paths.dev + 'js/cycododge.js',
+			// paths.dev + 'js/cycododge.js',
 
 			//services
 			// paths.dev + 'services/*.js',
