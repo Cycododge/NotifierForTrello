@@ -1,1 +1,36 @@
-notifications template
+<!-- header buttons -->
+<div class="row mb-3">
+	<div class="col">
+		<!-- Unread Notes Only -->
+		<button ng-if="!vm.filter" ng-click="vm.filter = { urnead: true }" type="button" class="btn btn-info btn-sm cursor-pointer">View Unread Only</button>
+
+		<!-- See All Notes -->
+		<button ng-if="vm.filter" ng-click="vm.filter = ''" type="button" class="btn btn-info btn-sm cursor-pointer">See All</button>
+	</div>
+	<div class="col text-right">
+		<button ng-click="vm.fn.markRead()" type="button" class="btn btn-info btn-sm cursor-pointer">Mark All Read</button>
+	</div>
+</div>
+
+<!-- content -->
+<div class="row mb-2">
+	<div class="col">
+
+		<div class="card mb-1" ng-repeat="note in vm.notes | filter:vm.filter">
+			<div class="card-block">
+				{{note.data.text}}
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<!-- footer -->
+<div class="row">
+	<div class="col">
+		<button type="button" class="btn btn-info btn-sm cursor-pointer" ng-click="vm.fn.logout()">Logout</button>
+	</div>
+	<div class="col text-right">
+		<span class="btn btn-info btn-sm disabled">0 Unread</span>
+	</div>
+</div>

@@ -21,19 +21,19 @@ UPDATED by Cycododge
 		n = c.location;
 		f = {
 			version: function () {
-				return s
+				return s;
 			},
 			key: function () {
-				return m
+				return m;
 			},
 			setKey: function (a) {
-				m = a
+				m = a;
 			},
 			token: function () {
-				return e
+				return e;
 			},
 			setToken: function (a) {
-				e = a
+				e = a;
 			},
 			rest: function () {
 				var a, c, d, k;
@@ -56,7 +56,7 @@ UPDATED by Cycododge
 				m && (b.data.key = m);
 				e && (b.data.token = e);
 				null != a && g.extend(b.data, a);
-				return g.ajax(b)
+				return g.ajax(b);
 			},
 			authorized: function () {
 				return null != e
@@ -91,7 +91,7 @@ UPDATED by Cycododge
 					a = b.scope;
 					c = [];
 					for (q in a)(f = a[q]) && c.push(q);
-					return c
+					return c;
 				}().join(",");
 				switch (b.type) {
 				case "chromeTab":

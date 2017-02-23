@@ -54,15 +54,6 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 
 /* Events */
 
-	//log the user out
-	$dom.on('click','#btn_logout',function(){
-		Trello.deauthorize(); //logout of popup
-		bkg.Trello.deauthorize(); //logout from background
-		chrome.browserAction.setBadgeText({text:'?'}); //indicate there is an error
-		chrome.browserAction.setTitle({title:app.name+' - Authorization Needed'});
-		$('#logged_in,#logged_out').toggle(); //hide #logged_in and show #logged_out
-	});
-
 	//perform actions when marking note as read/unread
 	$dom.on('click','#data .info',function(){
 		var toggle = $(this).find('.check'), //cache this <input>
@@ -114,12 +105,6 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 
 
 /* Functions */
-
-	//output cards
-	function init(){
-		output(bkg.note_data);
-		$('#logged_in,#logged_out').toggle(); //hide #logged_out and show #logged_in
-	}
 
 	//output the notes to the screen
 	window.output = function(notes,new_filters){ console.log(notes, new_filters);
@@ -285,8 +270,7 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 	});
 
 /* Page Initialization */
-	//if logged in, start the script
-	Trello.authorize({interactive:false,success:init});
+	
 
 	//determine if sound if on/off and set appropriately
 	storage.get('sound',function(v){
