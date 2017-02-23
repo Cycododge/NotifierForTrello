@@ -15,7 +15,8 @@ var paths = {
 var source = {
 	css: [
 		paths.vendor + 'bootstrap/dist/css/bootstrap.min.css',
-		paths.dev + 'css/cycododge.css'
+		paths.dev + 'css/cycododge.css',
+		paths.dev + 'views/app/app.css'
 	],
 	js: {
 		app: [
