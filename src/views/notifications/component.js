@@ -9,7 +9,7 @@
 		});
 
 	//runs the component
-	function controller() {
+	function controller(){
 		//config
 		var vm = this;
 

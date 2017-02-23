@@ -7,14 +7,11 @@
 	</head>
 	<body ng-app="app" ng-strict-di>
 
-		<div class="container-fluid m-0" hidden>
+		<div class="container-fluid m-0">
 			<ui-view class="d-block px-0 py-3"><!-- Views Injected Here --></ui-view>
 		</div>
 
 		<div id="container">
-			<div id="logged_out">
-				<div id="login">Please <div id="auth_button">Allow</div> <strong class="title">Notifier for Trello</strong> to read your notifications.</div>
-			</div>
 			<div id="logged_in">
 				<div id="header">
 					<a id="filter_all" class="button filter" target="_blank">View All</a>

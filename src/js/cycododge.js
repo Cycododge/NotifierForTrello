@@ -54,9 +54,6 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 
 /* Events */
 
-	//if the login button has been pressed
-	$dom.on('click','#auth_button',bkg.login);
-
 	//log the user out
 	$dom.on('click','#btn_logout',function(){
 		Trello.deauthorize(); //logout of popup

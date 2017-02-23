@@ -12,16 +12,9 @@
 	function controller() {
 		//config
 		var vm = this;
-
-		//perform initial setup
-		init();
-
-
-		////////////// FUNCTIONS //////////////
-
-		//setup the component for initial use
-		function init() {
-			//
-		}
+		var bkg = chrome.extension.getBackgroundPage();
+		vm.fn = {
+			login: bkg.login
+		};
 	}
 }());
