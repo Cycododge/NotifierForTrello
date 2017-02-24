@@ -2,7 +2,7 @@
 <div class="card mb-1 note-container">
 	<!-- Action -->
 	<div ng-if="vm.note.type === 'commentCard'" class="card-block p-2">
-		<strong>USER</strong> commented on the card <a href="#">CARDNAME</a> on <a href="#">BOARDNAME</a>
+		<a ng-href="https://trello.com/{{vm.note.memberCreator.username}}">{{vm.note.memberCreator.fullName}}</a> commented on the card <a href="#">CARDNAME</a> on <a href="#">BOARDNAME</a>
 	</div>
 
 	<div ng-if="vm.note.type === 'memberJoinedTrello'" class="card-block p-2">
