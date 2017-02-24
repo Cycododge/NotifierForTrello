@@ -24,11 +24,7 @@
 	<!-- Notes Container -->
 	<div class="col-11">
 		<!-- A Note -->
-		<div class="card mb-1" ng-repeat="note in vm.notes | filter:vm.filter">
-			<div class="card-block p-2">
-				{{note.data.text}}
-			</div>
-		</div>
+		<note ng-repeat="note in vm.notes | filter:vm.filter" note="note"></note>
 
 		<!-- No Results -->
 		<div class="card text-center" ng-if="!(vm.notes | filter:vm.filter).length">
