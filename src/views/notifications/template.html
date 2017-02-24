@@ -24,7 +24,7 @@
 	<!-- Notes Container -->
 	<div class="col-11">
 		<!-- A Note -->
-		<note ng-repeat="note in vm.notes | filter:vm.filter" note="note"></note>
+		<note ng-repeat="note in vm.notes track by note.id | filter:vm.filter" note="note"></note>
 
 		<!-- No Results -->
 		<div class="card text-center" ng-if="!(vm.notes | filter:vm.filter).length">
