@@ -16,10 +16,20 @@
 		var bkg = chrome.extension.getBackgroundPage();
 		vm.notes = [];
 		vm.filter = '';
-		vm.visibleNotes = [];
+		vm.menu = [
+			{
+				text: 'Show All',
+				count: 0,
+				filter: {}
+			},
+			{
+				text: 'Unread',
+				count: 0,
+				filter: { unread: true }
+			}
+		];
 		vm.fn = {
-			logout: logout,
-			markRead: markRead
+			logout: logout
 		};
 
 		//perform initial setup
@@ -38,11 +48,6 @@
 					vm.notes = bkg.note_data;
 				}
 			});
-		}
-
-		//
-		function markRead() {
-
 		}
 
 		//deauthorize the extension from Trello
