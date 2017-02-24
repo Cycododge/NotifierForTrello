@@ -1,7 +1,7 @@
 <!-- Header -->
 <div class="row mb-2">
 	<div class="col">
-		<!-- <span class="btn btn-secondary text-gray-dark btn-sm cursor-pointer">&#9776;</span> -->
+		<button type="button" class="btn btn-info btn-sm cursor-pointer" ng-click="vm.fn.logout()">Logout</button>
 	</div>
 	<div class="col text-right">
 		<span class="btn btn-secondary btn-sm cursor-default">@Cycododge</span>
@@ -9,7 +9,7 @@
 </div>
 
 <!-- content -->
-<div class="row mb-2">
+<div class="row">
 	<!-- Menu Container -->
 	<div class="col-1">
 		<!-- Menu Expansion Container -->
@@ -29,15 +29,12 @@
 				{{note.data.text}}
 			</div>
 		</div>
-	</div>
-</div>
 
-<!-- footer -->
-<div class="row">
-	<div class="col">
-		<button type="button" class="btn btn-info btn-sm cursor-pointer" ng-click="vm.fn.logout()">Logout</button>
-	</div>
-	<div class="col text-right">
-		<!-- <span class="btn btn-info btn-sm disabled">0 Unread</span> -->
+		<!-- No Results -->
+		<div class="card text-center" ng-if="!(vm.notes | filter:vm.filter).length">
+			<div class="card-block">
+				No Results <span class="small">( <span class="btn-link cursor-pointer" ng-click="vm.filter = {}">clear filter</span> )</span>
+			</div>
+		</div>
 	</div>
 </div>
