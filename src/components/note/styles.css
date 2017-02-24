@@ -1,3 +1,8 @@
+note .note-container {
+	background-color: #f7f7f7;
+}
+
 note .note-content {
-	border: 1px solid #000;
+	box-shadow: 1px 1px 3px 0 rgba(0,0,0,0.2);
+	background-color: #fff;
 }
