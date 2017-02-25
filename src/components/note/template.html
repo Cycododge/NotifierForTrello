@@ -1,14 +1,7 @@
-<!-- Container -->
-<div class="card mb-1 note-container">
-	<!-- type commentCard -->
-	<div ng-if="vm.note.type === 'commentCard'" class="card-block p-2">
-		<user-link user="vm.note.memberCreator"></user-link> commented on the card <a href="#">CARDNAME</a> on <a href="#">BOARDNAME</a>
-	</div>
-
-	<!-- type memberJoinedTrello -->
-	<div ng-if="vm.note.type === 'memberJoinedTrello'" class="card-block p-2">
-		<user-link user="vm.note.memberCreator"></user-link> joined Trello on your recommendation. You earned a free month of Trello Gold
-	</div>
+<!-- Supported Note Type -->
+<div ng-if="vm.noteTypes[vm.note.type]" class="card mb-1 note-container">
+	<!-- Action -->
+	<div class="card-block p-2" ng-bind-html="vm.fn.getActionText(vm.note.type)"></div>
 
 	<!-- Content -->
 	<div ng-if="vm.note.data.text" class="card-block p-2 note-content m-2">

@@ -5,14 +5,14 @@
 		.component('note',{
 			templateUrl: 'components/note/template.html',
 			controllerAs: 'vm',
-			controller: [controller],
+			controller: ['$sce', controller],
 			bindings: {
 				note: '<'
 			}
 		});
 
 	//runs the component
-	function controller() {
+	function controller($sce) {
 		//config
 		var vm = this;
 		vm.noteTypes = {
@@ -59,6 +59,7 @@
 			makeAdminOfOrganization: '<user-link user="vm.note.memberCreator"></user-link> made you an admin of the organization [organization]'
 		};
 		vm.fn = {
+			getActionText: getActionText
 		};
 
 		//initialize the component when ready
@@ -72,6 +73,11 @@
 
 			console.log(vm.note);
 
+		}
+
+		//
+		function getActionText(type) {
+			return $sce.trustAsHtml(vm.noteTypes[type]);
 		}
 	}
 }());
