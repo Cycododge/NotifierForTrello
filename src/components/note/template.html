@@ -1,12 +1,13 @@
 <!-- Container -->
 <div class="card mb-1 note-container">
-	<!-- Action -->
+	<!-- type commentCard -->
 	<div ng-if="vm.note.type === 'commentCard'" class="card-block p-2">
-		<a external ng-href="https://trello.com/{{vm.note.memberCreator.username}}">{{vm.note.memberCreator.fullName}}</a> commented on the card <a href="#">CARDNAME</a> on <a href="#">BOARDNAME</a>
+		<user-link user="vm.note.memberCreator"></user-link> commented on the card <a href="#">CARDNAME</a> on <a href="#">BOARDNAME</a>
 	</div>
 
+	<!-- type memberJoinedTrello -->
 	<div ng-if="vm.note.type === 'memberJoinedTrello'" class="card-block p-2">
-		<a external ng-href="https://trello.com/{{vm.note.memberCreator.username}}">{{vm.note.memberCreator.fullName}}</a> joined Trello on your recommendation. You earned a free month of Trello Gold
+		<user-link user="vm.note.memberCreator"></user-link> joined Trello on your recommendation. You earned a free month of Trello Gold
 	</div>
 
 	<!-- Content -->
