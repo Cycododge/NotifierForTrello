@@ -16,27 +16,27 @@
 		//config
 		var vm = this;
 		vm.noteTypes = {
-			commentCard: '<user-link user="vm.note.memberCreator"></user-link> commented on the card [card_name] on [board_name]',
+			commentCard: '<user-link user="vm.note.memberCreator"></user-link> commented on the card <card-link data="vm.note.data"></card-link> on [board_name]',
 
 			memberJoinedTrello: '<user-link user="vm.note.memberCreator"></user-link> joined Trello on your recommendation. You earned a free month of Trello Gold',
 
-			removedFromCard: '<user-link user="vm.note.memberCreator"></user-link> removed you from the card [card_name] on [board_name]',
+			removedFromCard: '<user-link user="vm.note.memberCreator"></user-link> removed you from the card <card-link data="vm.note.data"></card-link> on [board_name]',
 
-			addedToCard: '<user-link user="vm.note.memberCreator"></user-link> added you to the card [card_name] on [board_name]',
+			addedToCard: '<user-link user="vm.note.memberCreator"></user-link> added you to the card <card-link data="vm.note.data"></card-link> on [board_name]',
 
-			mentionedOnCard: '<user-link user="vm.note.memberCreator"></user-link> mentioned you on the card [card_name] on [board_name] [mention]',
+			mentionedOnCard: '<user-link user="vm.note.memberCreator"></user-link> mentioned you on the card <card-link data="vm.note.data"></card-link> on [board_name] [mention]',
 
-			changeCard: '<user-link user="vm.note.memberCreator"></user-link> moved the card [card_name] to [list_name] on [board_name]',
+			changeCard: '<user-link user="vm.note.memberCreator"></user-link> moved the card <card-link data="vm.note.data"></card-link> to [list_name] on [board_name]',
 
-			createdCard: '<user-link user="vm.note.memberCreator"></user-link> created [card_name] in [list_name] on [board_name]',
+			createdCard: '<user-link user="vm.note.memberCreator"></user-link> created <card-link data="vm.note.data"></card-link> in [list_name] on [board_name]',
 
-			updateCheckItemStateOnCard: '<user-link user="vm.note.memberCreator"></user-link> checked [checked] on [card_name] on [board_name]',
+			updateCheckItemStateOnCard: '<user-link user="vm.note.memberCreator"></user-link> checked [checked] on <card-link data="vm.note.data"></card-link> on [board_name]',
 
-			addedMemberToCard: '<user-link user="vm.note.memberCreator"></user-link> joined the card [card_name] on [board_name]',
+			addedMemberToCard: '<user-link user="vm.note.memberCreator"></user-link> joined the card <card-link data="vm.note.data"></card-link> on [board_name]',
 
-			removedMemberFromCard: '<user-link user="vm.note.memberCreator"></user-link> left the card [card_name] on [board_name]',
+			removedMemberFromCard: '<user-link user="vm.note.memberCreator"></user-link> left the card <card-link data="vm.note.data"></card-link> on [board_name]',
 
-			addedAttachmentToCard: '<user-link user="vm.note.memberCreator"></user-link> attached [attached] to [card_name] on [board_name]',
+			addedAttachmentToCard: '<user-link user="vm.note.memberCreator"></user-link> attached [attached] to <card-link data="vm.note.data"></card-link> on [board_name]',
 
 			addedToBoard: '<user-link user="vm.note.memberCreator"></user-link> added you to the board [board_name]',
 
