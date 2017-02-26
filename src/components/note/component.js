@@ -36,7 +36,7 @@
 
 			removedMemberFromCard: '<user-link user="vm.note.memberCreator"></user-link> left the card <card-link data="vm.note.data"></card-link> on <board-link data="vm.note.data"></board-link>',
 
-			addedAttachmentToCard: '<user-link user="vm.note.memberCreator"></user-link> attached [attached] to <card-link data="vm.note.data"></card-link> on <board-link data="vm.note.data"></board-link>',
+			addedAttachmentToCard: '<user-link user="vm.note.memberCreator"></user-link> attached <attachment data="vm.note.data"></attachment> to <card-link data="vm.note.data"></card-link> on <board-link data="vm.note.data"></board-link>',
 
 			addedToBoard: '<user-link user="vm.note.memberCreator"></user-link> added you to the board <board-link data="vm.note.data"></board-link>',
 

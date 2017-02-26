@@ -11,7 +11,6 @@ $(function(){
 		note_data = {}, //contains object of note data
 		note_structures = [ //list of classes to show
 		/*1*/['mention'],
-		/*6*/['attached'],
 		/*7*/['checked']
 			],
 		note_types = { },
@@ -134,7 +133,6 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 			//build a message
 			$note.append(`
 				<div class="message">
-					<span class="attached"></span>
 					<span class="checked"></span>
 					<pre class="mention"></pre>
 				</div>
@@ -146,21 +144,6 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 					</div>
 				</div>
 			`);
-
-			try{ //item attached
-				if(note.type == 'addedAttachmentToCard'){
-					//if the name contains a URL, keep it short.
-					var name_output = (note.data.name.match(urlRegex) ? (note.data.url.length > 25 ? note.data.name.slice(0,22)+'...' : name.data.url) : note.data.name);
-
-					$note
-						.find('.message .attached')
-						.html('<a href="'+note.data.url+'">'+name_output+'</a>'); //output data
-				}
-			}catch(e){
-				$note
-					.find('.message .attached')
-					.html('<span class="unknown">[unknown]</span>'); //don't know what the attachment is
-			}
 
 			try{ //item checked (also contains note.data.state == 'complete'. Keep an eye out for other states.
 				if(note.type == 'updateCheckItemStateOnCard'){

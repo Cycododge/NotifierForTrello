@@ -1,0 +1,5 @@
+<!-- If the attachment details are known -->
+<a ng-if="data.url" external ng-href="{{data.url}}">{{data.name}}</a>
+
+<!-- If the attachment details are unknown -->
+<em ng-if="!data.url">[unknown attachment]</em>
