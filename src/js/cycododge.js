@@ -10,14 +10,14 @@ $(function(){
 		user_data = bkg.user_data || {}, //contains object of user data
 		note_data = {}, //contains object of note data
 		note_structures = [ //list of classes to show
-		/*0*/['user','user_gone','action','card_name','text-on-board','board_name'],
-		/*1*/['user','user_gone','action','card_name','text-on-board','board_name','mention'],
-		/*2*/['user','user_gone','action','card_name','text-to','list_name','text-on-board','board_name'],
-		/*3*/['user','user_gone','action','board_name'],
-		/*4*/['user','user_gone','action','organization'],
-		/*5*/['user','user_gone','action','card_name','text-in','list_name','text-on-board','board_name'],
-		/*6*/['user','user_gone','action','attached','text-to','card_name','text-on-board','board_name'],
-		/*7*/['user','user_gone','action','checked','text-on-card','card_name','text-on-board','board_name']
+		/*0*/['user','action','card_name','text-on-board','board_name'],
+		/*1*/['user','action','card_name','text-on-board','board_name','mention'],
+		/*2*/['user','action','card_name','text-to','list_name','text-on-board','board_name'],
+		/*3*/['user','action','board_name'],
+		/*4*/['user','action','organization'],
+		/*5*/['user','action','card_name','text-in','list_name','text-on-board','board_name'],
+		/*6*/['user','action','attached','text-to','card_name','text-on-board','board_name'],
+		/*7*/['user','action','checked','text-on-card','card_name','text-on-board','board_name']
 			],
 		note_types = {
 			removedFromCard:{ text:'removed you from the card', structure:note_structures[0] },
@@ -58,21 +58,72 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 	$dom.on('click','#data .info',function(){
 		var toggle = $(this).find('.check'), //cache this <input>
 			note = $(this).parent('.note'); //the note wrapper
+
 		//make card unread
 		if(toggle.hasClass('marked')){
-			Trello.put('notifications/'+note.attr('id'),{unread:true},function(s){console.log('success');},function(e){console.log('error');}); //mark unread on trello
-			note.addClass('unread'); //change styling
-			toggle.removeClass('marked').siblings('.help').text('Mark Read'); //mark unread
-			for(var i in note_data){ if(note_data[i].id == note.attr('id')){ note_data[i].unread = true; break; } } //make object unread
+			Trello
+				.put(
+					'notifications/' + note.attr('id'),
+					{ unread: true },
+					function(s){
+						console.log('success');
+					},
+					function(e){
+						console.log('error');
+					}
+				); //mark unread on trello
+
+			note
+				.addClass('unread'); //change styling
+
+			toggle
+				.removeClass('marked')
+				.siblings('.help')
+				.text('Mark Read'); //mark unread
+
+			for(var i in note_data){
+				if(note_data[i].id == note.attr('id')){
+					note_data[i].unread = true;
+					break;
+				}
+			} //make object unread
 		}else{ //make card read
-			Trello.put('notifications/'+note.attr('id'),{unread:false},function(s){console.log('success');},function(e){console.log('error');}); //mark read on trello
-			note.removeClass('unread'); //change styling
-			toggle.addClass('marked').siblings('.help').text('Mark Unread'); //mark read
-			for(var n in note_data){ if(note_data[n].id == note.attr('id')){ note_data[n].unread = false; break; } } //make object unread
-			if(filters.unread){ note.slideUp(400); } //if showing unread notes, remove this note.
+			Trello
+				.put(
+					'notifications/' + note.attr('id'),
+					{ unread: false },
+					function(s){ console.log('success'); },
+					function(e){ console.log('error'); }
+				); //mark read on trello
+
+			note
+				.removeClass('unread'); //change styling
+
+			toggle
+				.addClass('marked')
+				.siblings('.help')
+				.text('Mark Unread'); //mark read
+
+			for(var n in note_data){
+				if(note_data[n].id == note.attr('id')){
+					note_data[n].unread = false;
+					break;
+				}
+			} //make object unread
+
+			if(filters.unread){
+				note.slideUp(400);
+			} //if showing unread notes, remove this note.
 		}
+
 		update_unread(true); //update user on number of unread notes
-		if(filters.unread){ $('#viewing_count .total').text($('.note.unread').length); } //if showing unread notes, update total output
+
+		if(filters.unread){
+			$('#viewing_count .total')
+				.text(
+					$('.note.unread').length
+				);
+		} //if showing unread notes, update total output
 	});
 
 	//mark all notes as read
@@ -83,37 +134,23 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 		});
 	});
 
-	//display only unread notes
-	$dom.on('click','#filter_unread',function(){
-		$(this).hide(); //hide this button
-		$('#filter_all').show(); //replace with filter all button
-		output(note_data,{unread:true}); //set the filter
-	});
-
-	//display all notes
-	$dom.on('click','#filter_all',function(){
-		$(this).hide(); //hide this button
-		$('#filter_unread').show(); //replace with filter all button
-		output(note_data,{unread:false});
-	});
-
-	//for links on notes, get the href and go there through goToUrl();
-	$dom.on('click','#data .note a',function(e){ console.log($(this).attr('href'));
-		e.preventDefault(); //don't follow the link
-		goToUrl($(this).attr('href')); //navigate to the link
-	});
-
 
 /* Functions */
 
 	//output the notes to the screen
-	window.output = function(notes,new_filters){ console.log(notes, new_filters);
+	window.output = function(notes,new_filters){
+		console.log(notes, new_filters);
+
 		note_data = notes; //update global object
+
 		$('#data').empty(); //clear the current set of notes
+
 		var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig; //detect url
 
 		//if new filters were passed, update current
-		for(var i in new_filters){ filters[i] = new_filters[i]; }
+		for(var i in new_filters){
+			filters[i] = new_filters[i];
+		}
 
 		//loop though notes
 		for(var index in notes){
@@ -133,16 +170,27 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 				$note.find('.message .user_gone').text('[someone]'); //format for non-existing user
 			}
 
-			try{ $note.find('.message .action').text(note_types[note.type].text); }catch(e){} //type of note
+			try{
+				$note
+					.find('.message .action')
+					.text(note_types[note.type].text);
+			}catch(e){} //type of note
+
 			try{ //item attached
 				if(note.type == 'addedAttachmentToCard'){
 					//if the name contains a URL, keep it short.
 					var name_output = (note.data.name.match(urlRegex) ? (note.data.url.length > 25 ? note.data.name.slice(0,22)+'...' : name.data.url) : note.data.name);
-					$note.find('.message .attached').html('<a href="'+note.data.url+'">'+name_output+'</a>'); //output data
+
+					$note
+						.find('.message .attached')
+						.html('<a href="'+note.data.url+'">'+name_output+'</a>'); //output data
 				}
 			}catch(e){
-				$note.find('.message .attached').html('<span class="unknown">[unknown]</span>'); //don't know what the attachment is
+				$note
+					.find('.message .attached')
+					.html('<span class="unknown">[unknown]</span>'); //don't know what the attachment is
 			}
+
 			try{ //item checked (also contains note.data.state == 'complete'. Keep an eye out for other states.
 				if(note.type == 'updateCheckItemStateOnCard'){
 
@@ -155,16 +203,32 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 			}catch(e){
 				$note.find('.message .checked').html('<span class="unknown">[unknown]</span>'); //don't know what the checked item is
 			}
-			try{ $note.find('.message .card_name').text(note.data.card.name).attr('href','http://trello.com/card/'+note.data.board.id+'/'+note.data.card.idShort); }catch(e){} //the card the action happened on
-			try{ $note.find('.message .list_name').text(note.data.listAfter.name); }catch(e){} //name of list card moved to
-			try{ $note.find('.message .list_name').text(note.data.list.name); }catch(e){} //name of list
-			try{ $note.find('.message .board_name').text(note.data.board.name).attr('href','http://trello.com/board/'+note.data.board.id); }catch(e){} //the board the note belongs to
-			try{ $note.find('.message .organization').text(note.data.organization.name).attr('href','http://trello.com/'+note.data.organization.id); }catch(e){} //link to organization
+
+			try{
+				$note
+					.find('.message .card_name')
+					.text(note.data.card.name)
+					.attr('href','http://trello.com/card/'+note.data.board.id+'/'+note.data.card.idShort);
+			}catch(e){} //the card the action happened on
+
+			try{
+				$note
+					.find('.message .list_name')
+					.text(note.data.listAfter.name);
+			}catch(e){} //name of list card moved to
+
+			try{
+				$note
+					.find('.message .list_name')
+					.text(note.data.list.name);
+			}catch(e){} //name of list
+
 			try{ //parse @user's and the message - apply to tag
 				var msg = note.data.text.replace(/@[a-z]+/gi,function(user){ return '<span class="at other">'+user+'</span>'; }), //style all mentions
 					msg = msg.replace('other">@'+user_data.username,'me">@'+user_data.username); //style my mentions
 				$note.find('.message .mention').html(msg); //output text
 			}catch(e){}
+
 			try{ //format and output the date
 				var date = new Date(note.date), //convert to date object
 					hour = date.getHours() < 13 ? date.getHours():date.getHours()-12, //hours
@@ -174,13 +238,23 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 					day = date.getDate(),
 					year = date.getFullYear(),
 					output = month + '/' + day + '/' + year + ' @ ' + (hour == 0 ? '12':hour) + ':' + minutes + ampm; //build the string
-				$note.find('.info .timestamp').text(output);
+
+				$note
+					.find('.info .timestamp')
+					.text(output);
 			}catch(e){} //date
+
 			if(!note.unread){ //determine if unread
-				$note.find('.info .status .check').addClass('marked');
+				$note
+					.find('.info .status .check')
+					.addClass('marked');
 			}else{
-				$note.addClass('unread'); //specify unread class for styling
-				$note.find('.info .help').text('Mark Read'); //change help text on .info hover
+				$note
+					.addClass('unread'); //specify unread class for styling
+
+				$note
+					.find('.info .help')
+					.text('Mark Read'); //change help text on .info hover
 			}
 
 			//if this note has a structure
@@ -205,8 +279,14 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 
 		//update note counts
 		update_unread();
-		if(!$('#data .note').length){ $('#data').html('<div style="margin-top:20px;">No notifications for this filter!</div>'); } //if no notes displayed
-		$('#viewing_count .total').text($('.note').length); //total output
+
+		if(!$('#data .note').length){
+			$('#data')
+				.html('<div style="margin-top:20px;">No notifications for this filter!</div>');
+			} //if no notes displayed
+
+		$('#viewing_count .total')
+			.text($('.note').length); //total output
 	};
 
 	//update the total of unread notes on the page and badge
@@ -231,28 +311,18 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 			storage.set({'lastUnread':lastUnread});
 		});
 
-
 		if(unread_count > 0){
 			chrome.browserAction.setBadgeText({text:String(unread_count)}); //update unread count
 		}else{
 			chrome.browserAction.setBadgeText({text:''}); //remove badge
 		}
-		$('#unread_count .total').text(unread_count); //update page with total
-		if(!unread_count){ $('#unread_count').addClass('zero'); }else{ $('#unread_count').removeClass('zero'); } //change color if unread == 0
-	}
 
-	//send user to link
-	function goToUrl(myURL){console.log(myURL);
-		//find the current tab
-		chrome.tabs.getSelected(null,function(tab) {
-			//if the current tab is on the correct site AND the myURL matches too
-			if(tab.url.indexOf(redirectURLtoMatch) > -1 && myURL.indexOf(redirectURLtoMatch) > -1){
-				// go to this url via the current tab
-				chrome.tabs.update(tab.id,{url:myURL});
-			}else{
-				chrome.tabs.create({url:myURL});
-			}
-		});
+		$('#unread_count .total').text(unread_count); //update page with total
+
+		if(!unread_count){
+			$('#unread_count').addClass('zero');
+		}else{
+			$('#unread_count').removeClass('zero'); } //change color if unread == 0
 	}
 
 	$('#viewing_count').on('click','.twitter.sound',function(){
@@ -270,8 +340,6 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 	});
 
 /* Page Initialization */
-	
-
 	//determine if sound if on/off and set appropriately
 	storage.get('sound',function(v){
 		if(v.sound){
