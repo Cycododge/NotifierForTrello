@@ -11,35 +11,10 @@ $(function(){
 		note_data = {}, //contains object of note data
 		note_structures = [ //list of classes to show
 		/*1*/['mention'],
-		/*5*/['list_name'],
 		/*6*/['attached'],
 		/*7*/['checked']
 			],
-		note_types = {
-			removedFromCard:{ text:'removed you from the card', structure:note_structures[0] },
-			addedToCard:{ text:'added you to the card', structure:note_structures[0] },
-			mentionedOnCard:{ text:'mentioned you on the card', structure:note_structures[1] },
-			commentCard:{ text:'commented on the card', structure:note_structures[1] },
-			changeCard:{ text:'moved the card', structure:note_structures[2] },
-			createdCard:{ text:'created', structure:note_structures[5] },
-			updateCheckItemStateOnCard:{ text:'checked', structure:note_structures[7] },
-
-			addedMemberToCard:{ text:'joined the card', structure:note_structures[0] },
-			removedMemberFromCard:{ text:'left the card', structure:note_structures[0] },
-			addedAttachmentToCard:{ text:'attached', structure:note_structures[6] },
-
-			addedToBoard:{ text:'added you to the board', structure:note_structures[3] },
-			removedFromBoard:{ text:'removed you from the board', structure:note_structures[3] },
-			invitedToBoard:{ text:'invited you to the board', structure:note_structures[3] },
-			addAdminToBoard:{ text:'made you a co-owner on the board', structure:note_structures[3] },
-			makeAdminOfBoard:{ text:'made you a co-owner on the board', structure:note_structures[3] },
-			closeBoard:{ text:'closed the board', structure:note_structures[3] },
-
-			removedFromOrganization:{ text:'removed you from the organization', structure:note_structures[4] },
-			invitedToOrganization:{ text:'invited you to the organization', structure:note_structures[4] },
-			addAdminToOrganization:{ text:'made you an admin on the organization', structure:note_structures[4] },
-			makeAdminOfOrganization:{ text:'made you an admin of the organization', structure:note_structures[4] }
-			},
+		note_types = { },
 		//create filters from note_types and add unread
 		filters = function(){var obj={};for(var i in note_types){obj[i]=false;}obj.unread=false;return obj;}();
 
@@ -161,7 +136,6 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 				<div class="message">
 					<span class="attached"></span>
 					<span class="checked"></span>
-					<span class="list_name"></span>
 					<pre class="mention"></pre>
 				</div>
 				<div class="info">
@@ -200,18 +174,6 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 			}catch(e){
 				$note.find('.message .checked').html('<span class="unknown">[unknown]</span>'); //don't know what the checked item is
 			}
-
-			try{
-				$note
-					.find('.message .list_name')
-					.text(note.data.listAfter.name);
-			}catch(e){} //name of list card moved to
-
-			try{
-				$note
-					.find('.message .list_name')
-					.text(note.data.list.name);
-			}catch(e){} //name of list
 
 			try{ //parse @user's and the message - apply to tag
 				var msg = note.data.text.replace(/@[a-z]+/gi,function(user){ return '<span class="at other">'+user+'</span>'; }), //style all mentions

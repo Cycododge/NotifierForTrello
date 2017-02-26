@@ -26,9 +26,9 @@
 
 			mentionedOnCard: '<user-link user="vm.note.memberCreator"></user-link> mentioned you on the card <card-link data="vm.note.data"></card-link> on <board-link data="vm.note.data"></board-link> [mention]',
 
-			changeCard: '<user-link user="vm.note.memberCreator"></user-link> moved the card <card-link data="vm.note.data"></card-link> to [list_name] on <board-link data="vm.note.data"></board-link>',
+			changeCard: '<user-link user="vm.note.memberCreator"></user-link> moved the card <card-link data="vm.note.data"></card-link> to <list-name data="vm.note.data"></list-name> on <board-link data="vm.note.data"></board-link>',
 
-			createdCard: '<user-link user="vm.note.memberCreator"></user-link> created <card-link data="vm.note.data"></card-link> in [list_name] on <board-link data="vm.note.data"></board-link>',
+			createdCard: '<user-link user="vm.note.memberCreator"></user-link> created <card-link data="vm.note.data"></card-link> in <list-name data="vm.note.data"></list-name> on <board-link data="vm.note.data"></board-link>',
 
 			updateCheckItemStateOnCard: '<user-link user="vm.note.memberCreator"></user-link> checked [checked] on <card-link data="vm.note.data"></card-link> on <board-link data="vm.note.data"></board-link>',
 
