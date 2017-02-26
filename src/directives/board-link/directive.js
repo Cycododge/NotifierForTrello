@@ -12,7 +12,7 @@
 				'data': '='
 			},
 			transclude: true,
-			template: '<a external ng-href="http://trello.com/board/{{data.board.id}}">{{data.board.name}}</a>'
+			template: '<a external ng-href="https://trello.com/board/{{data.board.id}}">{{data.board.name}}</a>'
 		};
 	}
 }());
