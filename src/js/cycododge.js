@@ -203,13 +203,6 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 
 			try{
 				$note
-					.find('.message .card_name')
-					.text(note.data.card.name)
-					.attr('href','http://trello.com/card/'+note.data.board.id+'/'+note.data.card.idShort);
-			}catch(e){} //the card the action happened on
-
-			try{
-				$note
 					.find('.message .list_name')
 					.text(note.data.listAfter.name);
 			}catch(e){} //name of list card moved to
