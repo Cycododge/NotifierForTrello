@@ -9,10 +9,10 @@
 		return {
 			restrict: 'E',
 			scope: {
-				'data': '='
+				'board': '='
 			},
 			transclude: true,
-			template: '<a external ng-href="https://trello.com/board/{{data.board.id}}">{{data.board.name}}</a>'
+			template: '<a external ng-href="https://trello.com/b/{{board.shortLink}}">{{board.name}}</a>'
 		};
 	}
 }());
