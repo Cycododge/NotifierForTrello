@@ -5,7 +5,7 @@
 
 	<!-- Content -->
 	<div ng-if="vm.note.data.text" class="card-block p-2 note-content mb-2 mt-0 mx-2">
-		{{vm.note.data.text}}
+		{{vm.note.data.text | trim}}
 	</div>
 </div>
 

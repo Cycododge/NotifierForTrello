@@ -28,17 +28,14 @@ var source = {
 			//new app init
 			paths.dev + 'views/app/app.js',
 
-			//old app init
-			// paths.dev + 'js/cycododge.js',
-
-			//services
-			// paths.dev + 'services/*.js',
-
 			//components
 			paths.dev + '**/component.js',
 
 			//directives
-			paths.dev + '**/directive.js'
+			paths.dev + '**/directive.js',
+
+			//filters
+			paths.dev + '**/filter.js'
 		],
 		vendor: [
 			paths.vendor + 'angular/angular.min.js',
