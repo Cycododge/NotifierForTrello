@@ -1,0 +1,5 @@
+<!-- If the user exists -->
+<a ng-if="user && user.username" external ng-href="https://trello.com/{{user.username}}">{{user.fullName || user.username}}</a>
+
+<!-- If the user no longer exists -->
+<em ng-if="!user || !user.username">[an unknown user]</em>

@@ -173,13 +173,6 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 				</div>
 			`);
 
-			//if user details exist (not deleted from Trello system)
-			if(note.memberCreator && note.memberCreator.username && note.memberCreator.fullName){
-				$note.find('.message .user_gone').replaceWith('<a class="user" href="http://trello.com/'+note.memberCreator.username+'">'+note.memberCreator.fullName+'</a>');
-			}else{
-				$note.find('.message .user_gone').text('[someone]'); //format for non-existing user
-			}
-
 			try{ //item attached
 				if(note.type == 'addedAttachmentToCard'){
 					//if the name contains a URL, keep it short.

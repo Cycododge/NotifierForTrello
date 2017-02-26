@@ -12,7 +12,7 @@
 				'user': '='
 			},
 			transclude: true,
-			template: '<a external ng-href="https://trello.com/{{user.username}}">{{user.fullName}}</a>'
+			templateUrl: '/directives/user-link/template.html'
 		};
 	}
 }());
