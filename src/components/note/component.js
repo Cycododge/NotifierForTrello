@@ -16,39 +16,39 @@
 		//config
 		var vm = this;
 		vm.noteTypes = {
-			commentCard: '<user-link user="vm.note.memberCreator"></user-link> commented on the card <card-link data="vm.note.data"></card-link> on [board_name]',
+			commentCard: '<user-link user="vm.note.memberCreator"></user-link> commented on the card <card-link data="vm.note.data"></card-link> on <board-link data="vm.note.data"></board-link>',
 
 			memberJoinedTrello: '<user-link user="vm.note.memberCreator"></user-link> joined Trello on your recommendation. You earned a free month of Trello Gold',
 
-			removedFromCard: '<user-link user="vm.note.memberCreator"></user-link> removed you from the card <card-link data="vm.note.data"></card-link> on [board_name]',
+			removedFromCard: '<user-link user="vm.note.memberCreator"></user-link> removed you from the card <card-link data="vm.note.data"></card-link> on <board-link data="vm.note.data"></board-link>',
 
-			addedToCard: '<user-link user="vm.note.memberCreator"></user-link> added you to the card <card-link data="vm.note.data"></card-link> on [board_name]',
+			addedToCard: '<user-link user="vm.note.memberCreator"></user-link> added you to the card <card-link data="vm.note.data"></card-link> on <board-link data="vm.note.data"></board-link>',
 
-			mentionedOnCard: '<user-link user="vm.note.memberCreator"></user-link> mentioned you on the card <card-link data="vm.note.data"></card-link> on [board_name] [mention]',
+			mentionedOnCard: '<user-link user="vm.note.memberCreator"></user-link> mentioned you on the card <card-link data="vm.note.data"></card-link> on <board-link data="vm.note.data"></board-link> [mention]',
 
-			changeCard: '<user-link user="vm.note.memberCreator"></user-link> moved the card <card-link data="vm.note.data"></card-link> to [list_name] on [board_name]',
+			changeCard: '<user-link user="vm.note.memberCreator"></user-link> moved the card <card-link data="vm.note.data"></card-link> to [list_name] on <board-link data="vm.note.data"></board-link>',
 
-			createdCard: '<user-link user="vm.note.memberCreator"></user-link> created <card-link data="vm.note.data"></card-link> in [list_name] on [board_name]',
+			createdCard: '<user-link user="vm.note.memberCreator"></user-link> created <card-link data="vm.note.data"></card-link> in [list_name] on <board-link data="vm.note.data"></board-link>',
 
-			updateCheckItemStateOnCard: '<user-link user="vm.note.memberCreator"></user-link> checked [checked] on <card-link data="vm.note.data"></card-link> on [board_name]',
+			updateCheckItemStateOnCard: '<user-link user="vm.note.memberCreator"></user-link> checked [checked] on <card-link data="vm.note.data"></card-link> on <board-link data="vm.note.data"></board-link>',
 
-			addedMemberToCard: '<user-link user="vm.note.memberCreator"></user-link> joined the card <card-link data="vm.note.data"></card-link> on [board_name]',
+			addedMemberToCard: '<user-link user="vm.note.memberCreator"></user-link> joined the card <card-link data="vm.note.data"></card-link> on <board-link data="vm.note.data"></board-link>',
 
-			removedMemberFromCard: '<user-link user="vm.note.memberCreator"></user-link> left the card <card-link data="vm.note.data"></card-link> on [board_name]',
+			removedMemberFromCard: '<user-link user="vm.note.memberCreator"></user-link> left the card <card-link data="vm.note.data"></card-link> on <board-link data="vm.note.data"></board-link>',
 
-			addedAttachmentToCard: '<user-link user="vm.note.memberCreator"></user-link> attached [attached] to <card-link data="vm.note.data"></card-link> on [board_name]',
+			addedAttachmentToCard: '<user-link user="vm.note.memberCreator"></user-link> attached [attached] to <card-link data="vm.note.data"></card-link> on <board-link data="vm.note.data"></board-link>',
 
-			addedToBoard: '<user-link user="vm.note.memberCreator"></user-link> added you to the board [board_name]',
+			addedToBoard: '<user-link user="vm.note.memberCreator"></user-link> added you to the board <board-link data="vm.note.data"></board-link>',
 
-			removedFromBoard: '<user-link user="vm.note.memberCreator"></user-link> removed you from the board [board_name]',
+			removedFromBoard: '<user-link user="vm.note.memberCreator"></user-link> removed you from the board <board-link data="vm.note.data"></board-link>',
 
-			invitedToBoard: '<user-link user="vm.note.memberCreator"></user-link> invited you to the board [board_name]',
+			invitedToBoard: '<user-link user="vm.note.memberCreator"></user-link> invited you to the board <board-link data="vm.note.data"></board-link>',
 
-			addAdminToBoard: '<user-link user="vm.note.memberCreator"></user-link> made you a co-owner on the board [board_name]',
+			addAdminToBoard: '<user-link user="vm.note.memberCreator"></user-link> made you a co-owner on the board <board-link data="vm.note.data"></board-link>',
 
-			makeAdminOfBoard: '<user-link user="vm.note.memberCreator"></user-link> made you a co-owner on the board [board_name]',
+			makeAdminOfBoard: '<user-link user="vm.note.memberCreator"></user-link> made you a co-owner on the board <board-link data="vm.note.data"></board-link>',
 
-			closeBoard: '<user-link user="vm.note.memberCreator"></user-link> closed the board [board_name]',
+			closeBoard: '<user-link user="vm.note.memberCreator"></user-link> closed the board <board-link data="vm.note.data"></board-link>',
 
 			removedFromOrganization: '<user-link user="vm.note.memberCreator"></user-link> removed you from the organization [organization]',
 
