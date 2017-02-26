@@ -180,12 +180,6 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 				$note.find('.message .user_gone').text('[someone]'); //format for non-existing user
 			}
 
-			try{
-				$note
-					.find('.message .action')
-					.text(note_types[note.type].text);
-			}catch(e){} //type of note
-
 			try{ //item attached
 				if(note.type == 'addedAttachmentToCard'){
 					//if the name contains a URL, keep it short.
