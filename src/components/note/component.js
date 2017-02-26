@@ -16,27 +16,27 @@
 		//config
 		var vm = this;
 		vm.noteTypes = {
-			commentCard: '<user-link user="vm.note.memberCreator"></user-link> commented on the card <card-link data="vm.note.data"></card-link> on <board-link data="vm.note.data"></board-link>',
+			commentCard: '<user-link user="vm.note.memberCreator"></user-link> commented on the card <card-link card="vm.note.data.card"></card-link> on <board-link data="vm.note.data"></board-link>',
 
 			memberJoinedTrello: '<user-link user="vm.note.memberCreator"></user-link> joined Trello on your recommendation. You earned a free month of Trello Gold',
 
-			removedFromCard: '<user-link user="vm.note.memberCreator"></user-link> removed you from the card <card-link data="vm.note.data"></card-link> on <board-link data="vm.note.data"></board-link>',
+			removedFromCard: '<user-link user="vm.note.memberCreator"></user-link> removed you from the card <card-link card="vm.note.data.card"></card-link> on <board-link data="vm.note.data"></board-link>',
 
-			addedToCard: '<user-link user="vm.note.memberCreator"></user-link> added you to the card <card-link data="vm.note.data"></card-link> on <board-link data="vm.note.data"></board-link>',
+			addedToCard: '<user-link user="vm.note.memberCreator"></user-link> added you to the card <card-link card="vm.note.data.card"></card-link> on <board-link data="vm.note.data"></board-link>',
 
-			mentionedOnCard: '<user-link user="vm.note.memberCreator"></user-link> mentioned you on the card <card-link data="vm.note.data"></card-link> on <board-link data="vm.note.data"></board-link> [mention]',
+			mentionedOnCard: '<user-link user="vm.note.memberCreator"></user-link> mentioned you on the card <card-link card="vm.note.data.card"></card-link> on <board-link data="vm.note.data"></board-link> [mention]',
 
-			changeCard: '<user-link user="vm.note.memberCreator"></user-link> moved the card <card-link data="vm.note.data"></card-link> to <list-name data="vm.note.data"></list-name> on <board-link data="vm.note.data"></board-link>',
+			changeCard: '<user-link user="vm.note.memberCreator"></user-link> moved the card <card-link card="vm.note.data.card"></card-link> to <list-name data="vm.note.data"></list-name> on <board-link data="vm.note.data"></board-link>',
 
-			createdCard: '<user-link user="vm.note.memberCreator"></user-link> created <card-link data="vm.note.data"></card-link> in <list-name data="vm.note.data"></list-name> on <board-link data="vm.note.data"></board-link>',
+			createdCard: '<user-link user="vm.note.memberCreator"></user-link> created <card-link card="vm.note.data.card"></card-link> in <list-name data="vm.note.data"></list-name> on <board-link data="vm.note.data"></board-link>',
 
-			updateCheckItemStateOnCard: '<user-link user="vm.note.memberCreator"></user-link> checked [checked] on <card-link data="vm.note.data"></card-link> on <board-link data="vm.note.data"></board-link>',
+			updateCheckItemStateOnCard: '<user-link user="vm.note.memberCreator"></user-link> checked [checked] on <card-link card="vm.note.data.card"></card-link> on <board-link data="vm.note.data"></board-link>',
 
-			addedMemberToCard: '<user-link user="vm.note.memberCreator"></user-link> joined the card <card-link data="vm.note.data"></card-link> on <board-link data="vm.note.data"></board-link>',
+			addedMemberToCard: '<user-link user="vm.note.memberCreator"></user-link> joined the card <card-link card="vm.note.data.card"></card-link> on <board-link data="vm.note.data"></board-link>',
 
-			removedMemberFromCard: '<user-link user="vm.note.memberCreator"></user-link> left the card <card-link data="vm.note.data"></card-link> on <board-link data="vm.note.data"></board-link>',
+			removedMemberFromCard: '<user-link user="vm.note.memberCreator"></user-link> left the card <card-link card="vm.note.data.card"></card-link> on <board-link data="vm.note.data"></board-link>',
 
-			addedAttachmentToCard: '<user-link user="vm.note.memberCreator"></user-link> attached <attachment data="vm.note.data"></attachment> to <card-link data="vm.note.data"></card-link> on <board-link data="vm.note.data"></board-link>',
+			addedAttachmentToCard: '<user-link user="vm.note.memberCreator"></user-link> attached <attachment data="vm.note.data"></attachment> to <card-link card="vm.note.data.card"></card-link> on <board-link data="vm.note.data"></board-link>',
 
 			addedToBoard: '<user-link user="vm.note.memberCreator"></user-link> added you to the board <board-link data="vm.note.data"></board-link>',
 
