@@ -1,4 +1,8 @@
-.expanded-menu {
+notifications {
+	display: block;
+}
+
+notifications .expanded-menu {
 	position: absolute;
 	z-index: 1;
 	background: #fff;

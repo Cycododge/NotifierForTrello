@@ -1,3 +1,7 @@
+note {
+	display: block;
+}
+
 note .note-action {
 	font-size: 90%;
 }
