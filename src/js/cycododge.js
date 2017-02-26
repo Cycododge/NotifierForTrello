@@ -10,14 +10,10 @@ $(function(){
 		user_data = bkg.user_data || {}, //contains object of user data
 		note_data = {}, //contains object of note data
 		note_structures = [ //list of classes to show
-		/*0*/['user','action','card_name','text-on-board','board_name'],
-		/*1*/['user','action','card_name','text-on-board','board_name','mention'],
-		/*2*/['user','action','card_name','text-to','list_name','text-on-board','board_name'],
-		/*3*/['user','action','board_name'],
-		/*4*/['user','action','organization'],
-		/*5*/['user','action','card_name','text-in','list_name','text-on-board','board_name'],
-		/*6*/['user','action','attached','text-to','card_name','text-on-board','board_name'],
-		/*7*/['user','action','checked','text-on-card','card_name','text-on-board','board_name']
+		/*1*/['mention'],
+		/*5*/['list_name'],
+		/*6*/['attached'],
+		/*7*/['checked']
 			],
 		note_types = {
 			removedFromCard:{ text:'removed you from the card', structure:note_structures[0] },
@@ -161,7 +157,21 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 			if(filters.unread && !note.unread){ continue; } //unread; skip read notes
 
 			//build a message
-			$note.append('<div class="message"><span class="unknown_type">Unsupported Note Type: '+note.type+'</span> <span class="user_gone"></span> <span class="action"></span> <span class="attached"></span> <span class="checked"></span> <span class="text-on-card">on</span> <span class="text-to">to</span> <a class="card_name"></a> <span class="text-in">in</span> <span class="list_name"></span> <span class="text-on-board">on</span> <a class="board_name"></a> <a class="organization"></a> <pre class="mention"></pre> </div><div class="info"><div class="timestamp"></div><div class="status"><div class="help">Mark Unread</div><div class="check"></div></div></div>');
+			$note.append(`
+				<div class="message">
+					<span class="attached"></span>
+					<span class="checked"></span>
+					<span class="list_name"></span>
+					<pre class="mention"></pre>
+				</div>
+				<div class="info">
+					<div class="timestamp"></div>
+					<div class="status">
+						<div class="help">Mark Unread</div>
+						<div class="check"></div>
+					</div>
+				</div>
+			`);
 
 			//if user details exist (not deleted from Trello system)
 			if(note.memberCreator && note.memberCreator.username && note.memberCreator.fullName){
