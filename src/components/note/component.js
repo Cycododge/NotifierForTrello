@@ -50,13 +50,13 @@
 
 			closeBoard: '<user-link user="vm.note.memberCreator"></user-link> closed the board <board-link data="vm.note.data"></board-link>',
 
-			removedFromOrganization: '<user-link user="vm.note.memberCreator"></user-link> removed you from the organization [organization]',
+			removedFromOrganization: '<user-link user="vm.note.memberCreator"></user-link> removed you from the organization <org-link data="vm.note.data"></org-link>',
 
-			invitedToOrganization: '<user-link user="vm.note.memberCreator"></user-link> invited you to the organization [organization]',
+			invitedToOrganization: '<user-link user="vm.note.memberCreator"></user-link> invited you to the organization <org-link data="vm.note.data"></org-link>',
 
-			addAdminToOrganization: '<user-link user="vm.note.memberCreator"></user-link> made you an admin on the organization [organization]',
+			addAdminToOrganization: '<user-link user="vm.note.memberCreator"></user-link> made you an admin on the organization <org-link data="vm.note.data"></org-link>',
 
-			makeAdminOfOrganization: '<user-link user="vm.note.memberCreator"></user-link> made you an admin of the organization [organization]'
+			makeAdminOfOrganization: '<user-link user="vm.note.memberCreator"></user-link> made you an admin of the organization <org-link data="vm.note.data"></org-link>'
 		};
 		vm.fn = {
 		};
