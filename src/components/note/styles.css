@@ -1,3 +1,7 @@
+note .note-action {
+	font-size: 90%;
+}
+
 note .note-container {
 	background-color: #f7f7f7;
 }
@@ -5,4 +9,12 @@ note .note-container {
 note .note-content {
 	box-shadow: 1px 1px 3px 0 rgba(0,0,0,0.2);
 	background-color: #fff;
+	word-break: break-word;
+	white-space: pre-line;
+	line-height: 1.2;
+	/*font-size: 90%;*/
+}
+
+note .note-content::first-line {
+	line-height: 0;
 }
