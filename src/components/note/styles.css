@@ -12,7 +12,7 @@ note .note-content {
 	word-break: break-word;
 	white-space: pre-line;
 	line-height: 1.2;
-	/*font-size: 90%;*/
+	font-size: 90%;
 }
 
 note .note-content::first-line {
