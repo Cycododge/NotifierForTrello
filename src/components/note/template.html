@@ -1,10 +1,10 @@
 <!-- Supported Note Type -->
 <div ng-if="vm.noteTypes[vm.note.type]" class="card mb-1 note-container">
 	<!-- Action -->
-	<div compile="vm.noteTypes[vm.note.type]" class="card-block pb-0 pt-2 px-2 note-action"></div>
+	<div compile="vm.noteTypes[vm.note.type]" class="card-block p-2 note-action"></div>
 
 	<!-- Content -->
-	<div ng-if="vm.note.data.text" class="card-block p-2 note-content m-2">
+	<div ng-if="vm.note.data.text" class="card-block p-2 note-content mb-2 mt-0 mx-2">
 		{{vm.note.data.text}}
 	</div>
 </div>
