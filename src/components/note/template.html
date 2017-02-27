@@ -7,6 +7,16 @@
 	<div ng-if="vm.note.data.text" class="card-block p-2 note-content mb-2 mt-0 mx-2">
 		{{vm.note.data.text | trim}}
 	</div>
+
+	<!-- Footer -->
+	<div class="card-block pb-1 pt-0 px-2 row note-footer">
+		<div class="col">
+			{{vm.note.date | date:"MMM dd 'at' h:mm a"}}
+		</div>
+		<!-- <div class="col text-right">
+			right
+		</div> -->
+	</div>
 </div>
 
 <!-- Unsupported Note Type -->

@@ -22,3 +22,8 @@ note .note-content {
 note .note-content::first-line {
 	line-height: 0;
 }
+
+note .note-footer {
+	color: #c3bfbf;
+	font-size: 70%;
+}
