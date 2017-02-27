@@ -184,11 +184,6 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 		//update note counts
 		update_unread();
 
-		if(!$('#data .note').length){
-			$('#data')
-				.html('<div style="margin-top:20px;">No notifications for this filter!</div>');
-			} //if no notes displayed
-
 		$('#viewing_count .total')
 			.text($('.note').length); //total output
 	};
