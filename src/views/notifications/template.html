@@ -1,13 +1,3 @@
-<!-- Header -->
-<div class="row mb-2">
-	<div class="col">
-		<button type="button" class="btn btn-info btn-sm cursor-pointer" ng-click="vm.fn.logout()">Logout</button>
-	</div>
-	<div class="col text-right">
-		<span class="btn btn-secondary btn-sm cursor-default">@User</span>
-	</div>
-</div>
-
 <!-- content -->
 <div class="row">
 	<!-- Menu Container -->
@@ -32,5 +22,12 @@
 				No Results <span class="small">( <span class="btn-link cursor-pointer" ng-click="vm.filter = {}">clear filter</span> )</span>
 			</div>
 		</div>
+	</div>
+</div>
+
+<!-- Footer -->
+<div class="row mt-2">
+	<div class="col text-right">
+		<a ui-sref="settings" class="small">Settings</a>
 	</div>
 </div>

@@ -43,6 +43,12 @@
 			.state('authorize', {
 				url: '/authorize',
 				template: '<authorize></authorize>'
+			})
+
+			//the users settings
+			.state('settings', {
+				url: '/settings',
+				template: '<settings></settings>'
 			});
 	}
 }());
