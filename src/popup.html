@@ -3,40 +3,17 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+
 		<link rel="stylesheet" type="text/css" href="bundles/app.css">
+
+		<script src="bundles/vendor.js"></script>
+		<script src="bundles/app.js"></script>
 	</head>
 	<body ng-app="app" ng-strict-di>
 
 		<div class="container-fluid m-0">
 			<ui-view class="d-block px-0 py-2"><!-- Views Injected Here --></ui-view>
 		</div>
-
-		<div id="container" hidden>
-			<div id="logged_in">
-				<div id="header">
-					<a id="filter_all" class="button filter" target="_blank">View All</a>
-					<a id="filter_unread" class="button filter" target="_blank">View Unread</a>
-					<span id="btn_mark_all" class="button">Mark All Read</span>
-				</div>
-				<div id="data"></div>
-				<div id="footer">
-					<span id="btn_logout" class="button">Logout</span>
-					<span id="loader"><img src="img/loader.gif" width="20" height="20" /></span>
-					<span id="viewing_count">
-						<div>
-							<a class="twitter" target="_blank" href="http://twitter.com/cycododge">@Cycododge</a> |
-							<a target="_blank" href="https://trello.com/board/notifier-for-trello/503843cb600165bf360244a2" class="twitter">Dev Log</a> |
-							<a href="#" class="twitter sound">Sound: <span class="twitter status">On</span></a>
-						</div>
-						Displaying <span class="total">0</span> Notifications
-					</span>
-					<span id="unread_count" class="button zero"><span class="total">0</span> Unread</span>
-				</div>
-			</div>
-		</div>
-
-		<script src="bundles/vendor.js"></script>
-		<script src="bundles/app.js"></script>
 
 	</body>
 </html>
