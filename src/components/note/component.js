@@ -59,19 +59,17 @@
 			makeAdminOfOrganization: '<user-link user="vm.note.memberCreator"></user-link> made you an admin of the organization <org-link data="vm.note.data"></org-link>'
 		};
 		vm.fn = {
+			toggleStatus: toggleStatus
 		};
-
-		//initialize the component when ready
-		vm.$onInit = init;
 
 
 		//////////////////// FUNCTIONS ////////////////////
 
-		//initialization of component
-		function init() {
-
-			console.log(vm.note);
-
+		//marks a note as read or unread
+		function toggleStatus(note){
+			//if
+			// if(note.unread){}
+			note.unread = !note.unread;
 		}
 	}
 }());

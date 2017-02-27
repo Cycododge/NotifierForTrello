@@ -1,5 +1,5 @@
 <!-- Supported Note Type -->
-<div ng-if="vm.noteTypes[vm.note.type]" class="card mb-1 note-container">
+<div ng-if="vm.noteTypes[vm.note.type]" class="card mb-1 note-container" ng-class="{ unread: vm.note.unread }">
 	<!-- Action -->
 	<div compile="vm.noteTypes[vm.note.type]" class="card-block p-2 note-action"></div>
 
@@ -14,7 +14,7 @@
 			{{vm.note.date | date:"MMM dd 'at' h:mm a"}}
 		</div>
 		<div class="col text-right text-danger">
-			<label class="cursor-pointer mb-0 mr-1" for="_{{vm.note.id}}">Mark {{vm.note.unread ? 'Read' : 'Unread'}}</label>
+			<span class="cursor-pointer mb-0 mr-1" ng-click="vm.fn.toggleStatus(vm.note)">Mark {{vm.note.unread ? 'Read' : 'Unread'}}</span>
 		</div>
 	</div>
 </div>

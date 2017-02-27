@@ -10,6 +10,10 @@ note .note-container {
 	background-color: #f7f7f7;
 }
 
+note .unread {
+	background-color: #fcffe9;
+}
+
 note .note-content {
 	box-shadow: 1px 1px 3px 0 rgba(0,0,0,0.2);
 	background-color: #fff;
