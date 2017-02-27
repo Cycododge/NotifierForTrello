@@ -164,21 +164,6 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 				$note.find('.message .mention').html(msg); //output text
 			}catch(e){}
 
-			try{ //format and output the date
-				var date = new Date(note.date), //convert to date object
-					hour = date.getHours() < 13 ? date.getHours():date.getHours()-12, //hours
-					minutes = date.getMinutes() < 10 ? '0'+date.getMinutes():date.getMinutes(), //minutes
-					ampm = date.getHours() < 13 ? 'a':'p', //if its morning or evening
-					month = date.getMonth()+1,
-					day = date.getDate(),
-					year = date.getFullYear(),
-					output = month + '/' + day + '/' + year + ' @ ' + (hour == 0 ? '12':hour) + ':' + minutes + ampm; //build the string
-
-				$note
-					.find('.info .timestamp')
-					.text(output);
-			}catch(e){} //date
-
 			if(!note.unread){ //determine if unread
 				$note
 					.find('.info .status .check')
