@@ -177,22 +177,6 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 					.text('Mark Read'); //change help text on .info hover
 			}
 
-			//if this note has a structure
-			try{
-				if(note_types[note.type].structure){
-				//loop through note structure
-					for(var ind in note_types[note.type].structure){
-						$note.find('.message .'+note_types[note.type].structure[ind]).show(); //make visisble
-					}
-				}else{
-					console.log(note);
-				}
-			}catch(e){
-				$note.find('.message .card_name').show();
-				$note.find('.message .unknown_type').append('<br />').show();
-				console.log(note); //log a note that has no programmed structure
-			}
-
 			//output note to user
 			$('#data').append($note);
 		}
