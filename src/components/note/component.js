@@ -14,7 +14,8 @@
 	//runs the component
 	function controller(){
 		//config
-		var vm = this;
+		var vm = this,
+			bkg = chrome.extension.getBackgroundPage();
 		vm.noteTypes = {
 			commentCard: '<user-link user="vm.note.memberCreator"></user-link> commented on the card <card-link card="vm.note.data.card"></card-link> on <board-link board="vm.note.data.board"></board-link>',
 
@@ -73,8 +74,17 @@
 			//update Trello with the new status
 			Trello
 				.put(
+					//send the note id
 					'notifications/' + note.id,
-					{ unread: note.unread }
+
+					//update this field
+					{ unread: note.unread },
+
+					//on success
+					function(){
+						//update the badge
+						bkg.update_badge();
+					}
 				);
 		}
 	}
