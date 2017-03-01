@@ -15,23 +15,26 @@ var sndNewNote = new Howl({ src: ['/snd/newNote.mp3' ]}), //load the sound for n
 	lastUnread = 0; //total unread notes since last check
 
 /* Immediate Actions */
-document.title = app.name+' v'+app.version+' Background'; //set the title of the page
+document.title = app.name + ' v' + app.version + ' Background'; //set the title of the page
 
 //check if user is logged in
 function loginCheck(){
 	//check for a connection first
 	if(!navigator.onLine){
-		setTimeout(loginCheck,refresh_time); //check again in refresh_time
+		setTimeout(loginCheck, refresh_time); //check again in refresh_time
 		return; //exit the function
 	}
 
 	//try connecting
 	Trello.authorize({
-		interactive:false, //check locally for token
-		success:auth_success,
-		error:auth_error
+		interactive: false, //check locally for token
+		success: auth_success,
+		error: auth_error
 	});
-}loginCheck();
+}
+
+//run this immediately
+loginCheck();
 
 
 ////////////////////////// Functions //////////////////////////
@@ -40,16 +43,20 @@ function loginCheck(){
 function login(){
 	//request authorization
 	Trello.authorize({
-		expiration:'never',
-		persist:true,
-		type:'chromeTab', //open in a new tab
-		redirect_uri:'http://trello.com',
-		scope:{read:true,write:true,account:true},
-		name:app.name+' v'+app.version
+		expiration: 'never',
+		persist: true,
+		type: 'chromeTab', //open in a new tab
+		redirect_uri: 'http://trello.com',
+		scope: {
+			read: true,
+			write: true,
+			account: true
+		},
+		name: app.name + ' v' + app.version
 	});
 
 	//determine when the user logs in
-	chrome.tabs.onUpdated.addListener(function(id,whatChanged,tab){
+	chrome.tabs.onUpdated.addListener(function(id, whatChanged, tab){
 		//if page found with token
 		if(tab.url.indexOf('https://trello.com/token=') >= 0){
 			var token = tab.url.split(/[&#]?token=([0-9a-f]{64})/)[1]; //parse out token
@@ -106,7 +113,7 @@ function get_notes(update){ //filters: all, unread, update
 
 	//if browser is offline - come back around in refresh_time to see if connection is back
 	if(!navigator.onLine){
-		setTimeout(get_notes,refresh_time);
+		setTimeout(get_notes, refresh_time);
 		return;
 	}
 
@@ -117,7 +124,7 @@ function get_notes(update){ //filters: all, unread, update
 
 		Trello.get(
 			'members/me/notifications', //path
-			{ filter:'all', limit:my_limit, page:0 }, //input parameters
+			{ filter: 'all', limit: my_limit, page: 0 }, //input parameters
 			function(data){ //on success
 				//if we have no pre-existing notes
 				if($.isEmptyObject(note_data)){
