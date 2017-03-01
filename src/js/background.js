@@ -177,7 +177,11 @@ function update_badge(){
 		//did the amount change from the last check?
 		if(lastUnread < count){
 			//try playing a sound to notify the user
-			storage.get('sound', function(data){	if(data.sound){	sndNewNote.play(); }});
+			storage.get('sound', function(data){
+				if(data.sound){
+					sndNewNote.play();
+				}
+			});
 		}
 
 		//update the new total
