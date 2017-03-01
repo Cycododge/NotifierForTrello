@@ -36,7 +36,7 @@
 
 		//setup the component for initial use
 		function init() {
-			//if logged in, start the script
+			//if logged in, get the data
 			Trello.authorize({
 				interactive: false,
 				success: function(){
