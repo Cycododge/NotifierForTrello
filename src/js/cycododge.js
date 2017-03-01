@@ -60,24 +60,6 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 			var note = notes[index], //cache this note
 				$note = $('<div class="note" id="'+note.id+'"></div>'); //create the html object
 
-			//validate note against filters
-			if(filters.unread && !note.unread){ continue; } //unread; skip read notes
-
-			//build a message
-			$note.append(`
-				<div class="message">
-					<span class="checked"></span>
-					<pre class="mention"></pre>
-				</div>
-				<div class="info">
-					<div class="timestamp"></div>
-					<div class="status">
-						<div class="help">Mark Unread</div>
-						<div class="check"></div>
-					</div>
-				</div>
-			`);
-
 			try{ //item checked (also contains note.data.state == 'complete'. Keep an eye out for other states.
 				if(note.type == 'updateCheckItemStateOnCard'){
 
@@ -96,29 +78,10 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 					msg = msg.replace('other">@'+user_data.username,'me">@'+user_data.username); //style my mentions
 				$note.find('.message .mention').html(msg); //output text
 			}catch(e){}
-
-			if(!note.unread){ //determine if unread
-				$note
-					.find('.info .status .check')
-					.addClass('marked');
-			}else{
-				$note
-					.addClass('unread'); //specify unread class for styling
-
-				$note
-					.find('.info .help')
-					.text('Mark Read'); //change help text on .info hover
-			}
-
-			//output note to user
-			$('#data').append($note);
 		}
 
 		//update note counts
 		update_unread();
-
-		$('#viewing_count .total')
-			.text($('.note').length); //total output
 	};
 
 	//update the total of unread notes on the page and badge
