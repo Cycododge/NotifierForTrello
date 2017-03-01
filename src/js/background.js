@@ -34,7 +34,7 @@ function loginCheck(){
 }loginCheck();
 
 
-/* Functions */
+////////////////////////// Functions //////////////////////////
 
 //take the user through the login process
 function login(){
@@ -55,7 +55,7 @@ function login(){
 			var token = tab.url.split(/[&#]?token=([0-9a-f]{64})/)[1]; //parse out token
 			if(!token){ return; } //exit here if token wasn't found
 			Trello.setToken(token); //successfully logged in
-			storage.set({'loginStatus':true}); //successfully logged in
+			storage.set({ loginStatus: true }); //successfully logged in
 			loginCheck(); //start the next step
 			chrome.tabs.remove(id); //close tab
 		}
@@ -64,14 +64,14 @@ function login(){
 
 //user is not logged in
 function auth_error(){
-	chrome.browserAction.setBadgeText({text:'?'}); //indicate there is an error
-	chrome.browserAction.setTitle({title:app.name+' v'+app.version+' - Authorization Needed'}); //give some descriptive text
+	chrome.browserAction.setBadgeText({ text: '?' }); //indicate there is an error
+	chrome.browserAction.setTitle({ title: app.name + ' v' + app.version + ' - Authorization Needed' }); //give some descriptive text
 }
 
 //user is logged in
 function auth_success(){
-	chrome.browserAction.setBadgeText({text:''}); //clear out any previous text
-	chrome.browserAction.setTitle({title:app.name+' v'+app.version+' - Logged In'}); //Reset Title
+	chrome.browserAction.setBadgeText({ text: '' }); //clear out any previous text
+	chrome.browserAction.setTitle({ title: app.name + ' v' + app.version + ' - Logged In' }); //Reset Title
 	member_data(); //load the logged in user
 }
 
@@ -94,7 +94,7 @@ function popup(fn){
 
 //retrieve user information
 function member_data(){
-	Trello.members.get("me", function(member){
+	Trello.members.get('me', function(member){
 		user_data = member; //make available to other functions
 		get_notes(); //make initial call to get all notes
 	});
@@ -170,14 +170,14 @@ function update_badge(){
 		//did the amount change from the last check?
 		if(lastUnread < count){
 			//try playing a sound to notify the user
-			storage.get('sound',function(data){	if(data.sound){	sndNewNote.play(); }});
+			storage.get('sound', function(data){	if(data.sound){	sndNewNote.play(); }});
 		}
 
 		//update the new total
 		lastUnread = count;
-		storage.set({'lastUnread':lastUnread});
+		storage.set({ lastUnread: lastUnread });
 	});
 
 	//update the badge text
-	chrome.browserAction.setBadgeText({text:String(count || '')});
+	chrome.browserAction.setBadgeText({ text: String(count || '') });
 }
