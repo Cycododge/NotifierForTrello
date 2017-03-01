@@ -26,74 +26,7 @@ $('#login .title').text(app.name+' v'+app.version); //set the text when asking t
 
 	//perform actions when marking note as read/unread
 	$dom.on('click','#data .info',function(){
-		var toggle = $(this).find('.check'), //cache this <input>
-			note = $(this).parent('.note'); //the note wrapper
-
-		//make card unread
-		if(toggle.hasClass('marked')){
-			Trello
-				.put(
-					'notifications/' + note.attr('id'),
-					{ unread: true },
-					function(s){
-						console.log('success');
-					},
-					function(e){
-						console.log('error');
-					}
-				); //mark unread on trello
-
-			note
-				.addClass('unread'); //change styling
-
-			toggle
-				.removeClass('marked')
-				.siblings('.help')
-				.text('Mark Read'); //mark unread
-
-			for(var i in note_data){
-				if(note_data[i].id == note.attr('id')){
-					note_data[i].unread = true;
-					break;
-				}
-			} //make object unread
-		}else{ //make card read
-			Trello
-				.put(
-					'notifications/' + note.attr('id'),
-					{ unread: false },
-					function(s){ console.log('success'); },
-					function(e){ console.log('error'); }
-				); //mark read on trello
-
-			note
-				.removeClass('unread'); //change styling
-
-			toggle
-				.addClass('marked')
-				.siblings('.help')
-				.text('Mark Unread'); //mark read
-
-			for(var n in note_data){
-				if(note_data[n].id == note.attr('id')){
-					note_data[n].unread = false;
-					break;
-				}
-			} //make object unread
-
-			if(filters.unread){
-				note.slideUp(400);
-			} //if showing unread notes, remove this note.
-		}
-
 		update_unread(true); //update user on number of unread notes
-
-		if(filters.unread){
-			$('#viewing_count .total')
-				.text(
-					$('.note.unread').length
-				);
-		} //if showing unread notes, update total output
 	});
 
 	//mark all notes as read

@@ -67,9 +67,15 @@
 
 		//marks a note as read or unread
 		function toggleStatus(note){
-			//if
-			// if(note.unread){}
+			//toggle the current status of the note
 			note.unread = !note.unread;
+
+			//update Trello with the new status
+			Trello
+				.put(
+					'notifications/' + note.id,
+					{ unread: note.unread }
+				);
 		}
 	}
 }());
