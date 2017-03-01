@@ -113,7 +113,7 @@ function get_notes(update){ //filters: all, unread, update
 	//if we're logged in
 	if(Trello.authorized()){
 		//send request
-		popup(function(){ this.$('#loader img').fadeIn(); }); //show the loading animation
+		setBadge('...');
 
 		Trello.get(
 			'members/me/notifications', //path
@@ -136,8 +136,8 @@ function get_notes(update){ //filters: all, unread, update
 					}
 				}
 
-				//process complete, hide the loading animation
-				popup(function(){ this.$('#loader img').fadeOut(); });
+				//process complete, update the badge
+				update_badge();
 
 				//check for more notes in refresh_time
 				setTimeout(get_notes,refresh_time);
@@ -180,4 +180,9 @@ function update_badge(){
 
 	//update the badge text
 	chrome.browserAction.setBadgeText({ text: String(count || '') });
+}
+
+//sets the text on the extension's badge
+function setBadge(text){
+	chrome.browserAction.setBadgeText({ text: text });
 }
