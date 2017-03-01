@@ -31,3 +31,11 @@ note .note-footer {
 	color: #c3bfbf;
 	font-size: 70%;
 }
+
+note .status-toggle {
+	display: none;
+}
+
+note:hover .status-toggle {
+	display: block;
+}

@@ -13,7 +13,7 @@
 		<div class="col">
 			{{vm.note.date | date:"MMM dd 'at' h:mm a"}}
 		</div>
-		<div class="col text-right text-danger">
+		<div class="col text-right text-danger status-toggle">
 			<span class="cursor-pointer mb-0 mr-1" ng-click="vm.fn.toggleStatus(vm.note)">Mark {{vm.note.unread ? 'Read' : 'Unread'}}</span>
 		</div>
 	</div>
