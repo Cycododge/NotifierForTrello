@@ -1,6 +1,6 @@
 {
   "name": "notifier_for_trello",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Chrome extension to view and filter your Trello notifications.",
   "main": "index.js",
   "scripts": {
@@ -22,7 +22,8 @@
     "angular": "^1.6.2",
     "angular-ui-router": "^0.4.2",
     "bootstrap": "^4.0.0-alpha.6",
-    "howler": "^2.0.2"
+    "howler": "^2.0.2",
+    "moment": "^2.18.1"
   },
   "devDependencies": {
     "gulp": "^3.9.1",

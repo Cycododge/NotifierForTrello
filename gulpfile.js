@@ -42,7 +42,8 @@ var source = {
 			paths.vendor + 'angular-ui-router/release/angular-ui-router.min.js',
 			paths.dev + 'js/jquery.js',
 			paths.dev + 'js/trello.custom.js',
-			paths.vendor + 'howler/dist/howler.min.js'
+			paths.vendor + 'howler/dist/howler.min.js',
+			paths.vendor + 'moment/min/moment.min.js'
 		]
 	},
 	forDist: [

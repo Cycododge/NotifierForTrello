@@ -17,6 +17,8 @@
 		var vm = this,
 			bkg = chrome.extension.getBackgroundPage();
 		vm.noteTypes = {
+			cardDueSoon: '<card-link card="vm.note.data.card"></card-link> on <board-link board="vm.note.data.board"></board-link> is due {{vm.note.data.card.due | human_date}}',
+
 			commentCard: '<user-link user="vm.note.memberCreator"></user-link> commented on the card <card-link card="vm.note.data.card"></card-link> on <board-link board="vm.note.data.board"></board-link>',
 
 			memberJoinedTrello: '<user-link user="vm.note.memberCreator"></user-link> joined Trello on your recommendation. You earned a free month of Trello Gold',
