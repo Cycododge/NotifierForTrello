@@ -4,9 +4,7 @@
 	<div compile="vm.noteTypes[vm.note.type]" class="card-block p-2 note-action"></div>
 
 	<!-- Content -->
-	<div ng-if="vm.note.data.text" class="card-block p-2 note-content mb-2 mt-0 mx-2">
-		{{vm.note.data.text | trim}}
-	</div>
+	<div ng-if="vm.note.data.text" compile="vm.fn.parseMentions(vm.note.data.text) | trim" class="card-block p-2 note-content mb-2 mt-0 mx-2"></div>
 
 	<!-- Footer -->
 	<div class="card-block pb-1 pt-0 px-2 row note-footer">

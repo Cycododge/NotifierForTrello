@@ -29,7 +29,7 @@
 
 			addedToCard: '<user-link user="vm.note.memberCreator"></user-link> added you to the card <card-link card="vm.note.data.card"></card-link> on <board-link board="vm.note.data.board"></board-link>',
 
-			mentionedOnCard: '<user-link user="vm.note.memberCreator"></user-link> mentioned you on the card <card-link card="vm.note.data.card"></card-link> on <board-link board="vm.note.data.board"></board-link> [mention]',
+			mentionedOnCard: '<user-link user="vm.note.memberCreator"></user-link> mentioned you on the card <card-link card="vm.note.data.card"></card-link> on <board-link board="vm.note.data.board"></board-link>',
 
 			changeCard: '<user-link user="vm.note.memberCreator"></user-link> moved the card <card-link card="vm.note.data.card"></card-link> to <list-name data="vm.note.data"></list-name> on <board-link board="vm.note.data.board"></board-link>',
 
@@ -64,11 +64,34 @@
 			makeAdminOfOrganization: '<user-link user="vm.note.memberCreator"></user-link> made you an admin of the organization <org-link data="vm.note.data"></org-link>'
 		};
 		vm.fn = {
-			toggleStatus: toggleStatus
+			toggleStatus: toggleStatus,
+			parseMentions: parseMentions
 		};
 
 
 		//////////////////// FUNCTIONS ////////////////////
+
+		//find a mention within a string of text and make it a link
+		function parseMentions(text) {
+			//expression that finds mentions
+			var regex = new RegExp(/@\w+/gi);
+
+			//convert any html into text for safety
+			var wrapper = document.createElement('div');
+			wrapper.innerText = text;
+			text = wrapper.innerHTML;
+
+			//if string contains a mention
+			if(regex.test(text)){
+				//Find each mention in the sentence
+				text = text.replace(/@\w+/gi,function(match, index, string){
+					return '<a external class="mention" href="https://trello.com/' + match.slice(1) + '">' + match + '</a>';
+				});
+			}
+
+			//send back the html safe string
+			return '<div class="d-inline-block">' + text + '</div>';
+		}
 
 		//marks a note as read or unread
 		function toggleStatus(note){
