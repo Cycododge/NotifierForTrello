@@ -1,6 +1,6 @@
 {
   "name": "notifier_for_trello",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Chrome extension to view and filter your Trello notifications.",
   "main": "index.js",
   "scripts": {
