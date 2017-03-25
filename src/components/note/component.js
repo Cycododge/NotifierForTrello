@@ -35,8 +35,6 @@
 
 			createdCard: '<user-link user="vm.note.memberCreator"></user-link> created <card-link card="vm.note.data.card"></card-link> in <list-name data="vm.note.data"></list-name> on <board-link board="vm.note.data.board"></board-link>',
 
-			updateCheckItemStateOnCard: '<user-link user="vm.note.memberCreator"></user-link> checked [checked] on <card-link card="vm.note.data.card"></card-link> on <board-link board="vm.note.data.board"></board-link>',
-
 			addedMemberToCard: '<user-link user="vm.note.memberCreator"></user-link> joined the card <card-link card="vm.note.data.card"></card-link> on <board-link board="vm.note.data.board"></board-link>',
 
 			removedMemberFromCard: '<user-link user="vm.note.memberCreator"></user-link> left the card <card-link card="vm.note.data.card"></card-link> on <board-link board="vm.note.data.board"></board-link>',
