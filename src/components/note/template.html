@@ -11,7 +11,7 @@
 	<!-- Footer -->
 	<div class="card-block pb-1 pt-0 px-2 row note-footer">
 		<div class="col">
-			{{vm.note.date | date:"MMM dd 'at' h:mm a"}}
+			{{vm.note.date | human_date}}
 		</div>
 		<div class="col text-right text-danger status-toggle">
 			<span class="cursor-pointer mb-0 mr-1" ng-click="vm.fn.toggleStatus(vm.note)">Mark {{vm.note.unread ? 'Read' : 'Unread'}}</span>
