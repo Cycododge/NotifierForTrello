@@ -43,7 +43,6 @@
 				success: function(){
 					//get the note data
 					vm.notes = bkg.note_data;
-					console.log(vm.notes);
 
 					//create dynamic people filters
 					populatePeopleFilters(vm.notes);
