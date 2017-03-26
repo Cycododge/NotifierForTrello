@@ -94,7 +94,7 @@
 			for (var person in people) {
 				if(people.hasOwnProperty(person)) {
 					vm.menu.push({
-						text: 'By ' + people[person].name,
+						text: 'From ' + people[person].name,
 						count: 0,
 						filter: people[person].filter
 					});
