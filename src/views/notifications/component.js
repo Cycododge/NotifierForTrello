@@ -22,22 +22,22 @@
 				filter: {}
 			},
 			{
-				text: 'Unread',
+				text: 'Unread Only',
 				count: 0,
 				filter: { unread: true }
 			},
 			{
-				text: 'Mentions',
+				text: 'My Mentions',
 				count: 0,
 				filter: { type: 'mentionedOnCard' }
 			},
 			{
-				text: 'Comments',
+				text: 'Comments Only',
 				count: 0,
 				filter: { data: { text: ''} }
 			}
 		];
-		vm.people = {};
+		vm.activeMenu = 0;
 
 		//perform initial setup
 		init();
@@ -62,18 +62,31 @@
 
 		//Create filters for people who created notifications
 		function populatePeopleFilters(notes){
+			var people = {};
+
 			//loop through each note
 			notes.forEach(function(note){
 				//if a person created this note AND they aren't already added
-				if(note.memberCreator && !vm.people[note.memberCreator.id]){
+				if(note.memberCreator && !people[note.memberCreator.id]){
 					//cache this person
-					vm.people[note.memberCreator.id] = {
+					people[note.memberCreator.id] = {
 						id: note.memberCreator.id,
 						name: note.memberCreator.fullName,
 						filter: { idMemberCreator: note.memberCreator.id }
 					};
 				}
 			});
+
+			//add the people object to the menu array
+			for (var person in people) {
+				if(people.hasOwnProperty(person)) {
+					vm.menu.push({
+						text: 'By ' + people[person].name,
+						count: 0,
+						filter: people[person].filter
+					});
+				}
+			}
 		}
 	}
 }());

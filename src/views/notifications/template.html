@@ -6,13 +6,7 @@
 		<div ng-class="{ 'expanded-menu card': vm.expandMenu }" ng-mouseleave="vm.expandMenu = false">
 			<!-- Menu Options -->
 			<div ng-mouseenter="vm.expandMenu = true" ng-repeat="btn in vm.menu">
-				<button ng-click="vm.filter = btn.filter" class="btn btn-sm btn-secondary cursor-pointer mb-1">{{(vm.notes | filter:btn.filter).length}} {{vm.expandMenu ? ' | ' + btn.text : ''}}</button>
-			</div>
-
-			<hr class="w-100">
-
-			<div ng-mouseenter="vm.expandMenu = true" ng-repeat="btn in vm.people">
-				<button ng-click="vm.filter = btn.filter" class="btn btn-sm btn-secondary cursor-pointer mb-1">{{(vm.notes | filter:btn.filter).length}} {{vm.expandMenu ? ' | ' + btn.name : ''}}</button>
+				<button ng-click="vm.filter = btn.filter; vm.activeMenu = $index;" ng-class="{ active: vm.activeMenu == $index }" class="btn btn-sm btn-secondary cursor-pointer mb-1">{{(vm.notes | filter:btn.filter).length}} {{vm.expandMenu ? ' | ' + btn.text : ''}}</button>
 			</div>
 		</div>
 	</div>
