@@ -19,7 +19,7 @@
 		<!-- No Results -->
 		<div class="card text-center" ng-if="!(vm.notes | filter:vm.filter).length">
 			<div class="card-block">
-				No Results <span class="small">( <span class="btn-link cursor-pointer" ng-click="vm.filter = {}">clear filter</span> )</span>
+				No Results <span class="small">( <span class="btn-link cursor-pointer" ng-click="vm.fn.clearFilter()">clear filter</span> )</span>
 			</div>
 		</div>
 	</div>

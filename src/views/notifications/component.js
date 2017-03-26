@@ -43,7 +43,8 @@
 		];
 		vm.activeFilter = localStorage.activeFilter || '0';
 		vm.fn = {
-			setFilter: setFilter
+			setFilter: setFilter,
+			clearFilter: clearFilter
 		};
 
 		//perform initial setup
@@ -52,11 +53,18 @@
 
 		////////////// FUNCTIONS //////////////
 
+		//clears the user's selected filter
+		function clearFilter() {
+			vm.filter = {};
+			vm.activeFilter = 0;
+			localStorage.activeFilter = vm.activeFilter;
+		}
+
 		//sets the active filter
 		function setFilter(index, btn) {
 			vm.filter = btn.filter;
 			vm.activeFilter = index;
-			localStorage.activeFilter = index;
+			localStorage.activeFilter = vm.activeFilter;
 		}
 
 		//setup the component for initial use
