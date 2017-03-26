@@ -17,27 +17,23 @@
 		vm.filter = '';
 		vm.menu = [
 			{
-				id: 1,
+				id: 'all',
 				text: 'Show All',
-				count: 0,
 				filter: {}
 			},
 			{
-				id: 2,
+				id: 'unread',
 				text: 'Unread Only',
-				count: 0,
 				filter: { unread: true }
 			},
 			{
-				id: 3,
+				id: 'mentions',
 				text: 'My Mentions',
-				count: 0,
 				filter: { type: 'mentionedOnCard' }
 			},
 			{
-				id: 4,
+				id: 'comments',
 				text: 'Comments Only',
-				count: 0,
 				filter: { data: { text: ''} }
 			}
 		];
@@ -56,15 +52,39 @@
 		//clears the user's selected filter
 		function clearFilter() {
 			vm.filter = {};
-			vm.activeFilter = 0;
+			vm.activeFilter = vm.menu[0].id;
 			localStorage.activeFilter = vm.activeFilter;
 		}
 
 		//sets the active filter
-		function setFilter(index, btn) {
+		function setFilter(btn) {
 			vm.filter = btn.filter;
-			vm.activeFilter = index;
+			vm.activeFilter = btn.id;
 			localStorage.activeFilter = vm.activeFilter;
+		}
+
+		//sets the default active filter
+		function loadDefaultFilter() {
+			//track if the filter was set
+			var filterSet = false;
+
+			//loop through each menu item
+			for (var i = 0; i < vm.menu.length; i++) {
+				//if this button is the active one
+				if(vm.menu[i].id === vm.activeFilter){
+					//set the active filter to the button
+					vm.filter = vm.menu[i].filter;
+
+					//mark that the filter was found
+					filterSet = true;
+
+					//stop the loop
+					break;
+				}
+			}
+
+			//if the loaded filter wasn't found in the list, clear altogether.
+			if(!filterSet){ clearFilter(); }
 		}
 
 		//setup the component for initial use
@@ -80,7 +100,7 @@
 					populatePeopleFilters(vm.notes);
 
 					//set the active filter
-					vm.filter = vm.menu[vm.activeFilter].filter;
+					loadDefaultFilter();
 				}
 			});
 		}
@@ -95,6 +115,7 @@
 				if(note.memberCreator && !people[note.memberCreator.id]){
 					//cache this person
 					people[note.memberCreator.id] = {
+						id: note.memberCreator.id,
 						name: note.memberCreator.fullName,
 						filter: { idMemberCreator: note.memberCreator.id }
 					};
@@ -102,13 +123,11 @@
 			});
 
 			//add the people object to the menu array
-			var count = vm.menu.length;
 			for (var person in people) {
 				if(people.hasOwnProperty(person)) {
 					vm.menu.push({
-						id: count++,
+						id: people[person].id,
 						text: 'From ' + people[person].name,
-						count: 0,
 						filter: people[person].filter
 					});
 				}

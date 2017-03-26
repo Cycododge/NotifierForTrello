@@ -5,8 +5,8 @@
 		<!-- Menu Expansion Container -->
 		<div ng-class="{ 'expanded-menu card': vm.expandMenu }" ng-mouseleave="vm.expandMenu = false">
 			<!-- Menu Options -->
-			<div ng-mouseenter="vm.expandMenu = true" ng-repeat="btn in vm.menu">
-				<button ng-click="vm.fn.setFilter($index, btn)" ng-class="{ active: vm.activeFilter == $index }" class="btn btn-sm btn-secondary cursor-pointer mb-1">{{(vm.notes | filter:btn.filter).length}} {{vm.expandMenu ? ' | ' + btn.text : ''}}</button>
+			<div ng-mouseenter="vm.expandMenu = true" ng-repeat="btn in vm.menu track by btn.id">
+				<button ng-click="vm.fn.setFilter(btn)" ng-class="{ active: vm.activeFilter == btn.id }" class="btn btn-sm btn-secondary cursor-pointer mb-1">{{(vm.notes | filter:btn.filter).length}} {{vm.expandMenu ? ' | ' + btn.text : ''}}</button>
 			</div>
 		</div>
 	</div>
