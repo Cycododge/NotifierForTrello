@@ -30,6 +30,11 @@
 				text: 'Mentions',
 				count: 0,
 				filter: { type: 'mentionedOnCard' }
+			},
+			{
+				text: 'Comments',
+				count: 0,
+				filter: { data: { text: ''} }
 			}
 		];
 		vm.people = {};
