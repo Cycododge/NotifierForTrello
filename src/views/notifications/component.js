@@ -87,7 +87,6 @@
 				if(note.memberCreator && !people[note.memberCreator.id]){
 					//cache this person
 					people[note.memberCreator.id] = {
-						id: note.memberCreator.id,
 						name: note.memberCreator.fullName,
 						filter: { idMemberCreator: note.memberCreator.id }
 					};
