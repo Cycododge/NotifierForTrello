@@ -38,12 +38,21 @@
 			}
 		];
 		vm.activeMenu = 0;
+		vm.fn = {
+			setFilter: setFilter
+		};
 
 		//perform initial setup
 		init();
 
 
 		////////////// FUNCTIONS //////////////
+
+		//sets the active filter
+		function setFilter(index, btn) {
+			vm.filter = btn.filter;
+			vm.activeMenu = index;
+		}
 
 		//setup the component for initial use
 		function init() {
