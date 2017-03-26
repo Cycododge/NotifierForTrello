@@ -17,21 +17,25 @@
 		vm.filter = '';
 		vm.menu = [
 			{
+				id: 1,
 				text: 'Show All',
 				count: 0,
 				filter: {}
 			},
 			{
+				id: 2,
 				text: 'Unread Only',
 				count: 0,
 				filter: { unread: true }
 			},
 			{
+				id: 3,
 				text: 'My Mentions',
 				count: 0,
 				filter: { type: 'mentionedOnCard' }
 			},
 			{
+				id: 4,
 				text: 'Comments Only',
 				count: 0,
 				filter: { data: { text: ''} }
@@ -91,9 +95,11 @@
 			});
 
 			//add the people object to the menu array
+			var count = vm.menu.length;
 			for (var person in people) {
 				if(people.hasOwnProperty(person)) {
 					vm.menu.push({
+						id: count++,
 						text: 'From ' + people[person].name,
 						count: 0,
 						filter: people[person].filter
