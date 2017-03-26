@@ -25,6 +25,11 @@
 				text: 'Unread',
 				count: 0,
 				filter: { unread: true }
+			},
+			{
+				text: 'Mentions',
+				count: 0,
+				filter: { type: 'mentionedOnCard' }
 			}
 		];
 		vm.people = {};
