@@ -37,7 +37,7 @@
 				filter: { data: { text: ''} }
 			}
 		];
-		vm.activeMenu = 0;
+		vm.activeFilter = localStorage.activeFilter || '0';
 		vm.fn = {
 			setFilter: setFilter
 		};
@@ -51,7 +51,8 @@
 		//sets the active filter
 		function setFilter(index, btn) {
 			vm.filter = btn.filter;
-			vm.activeMenu = index;
+			vm.activeFilter = index;
+			localStorage.activeFilter = index;
 		}
 
 		//setup the component for initial use
@@ -65,6 +66,9 @@
 
 					//create dynamic people filters
 					populatePeopleFilters(vm.notes);
+
+					//set the active filter
+					vm.filter = vm.menu[vm.activeFilter].filter;
 				}
 			});
 		}
