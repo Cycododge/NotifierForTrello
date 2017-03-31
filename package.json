@@ -1,7 +1,7 @@
 {
   "name": "notifier_for_trello",
-  "version": "2.0.3",
-  "description": "Chrome extension to view and filter your Trello notifications.",
+  "version": "2.0.4",
+  "description": "View, filter and save your Trello notifications as read or unread.",
   "main": "index.js",
   "scripts": {
     "start": "npm install && gulp bundle_dev && gulp watch_dev",
