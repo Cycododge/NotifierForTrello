@@ -1,3 +1,8 @@
+/*
+* Credit for Checkbox Styling
+* http://freefrontend.com/css-checkboxes/
+*/
+
 settings input[type=checkbox]{
 	height: 0;
 	width: 0;
