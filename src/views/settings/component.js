@@ -16,7 +16,7 @@
 		var bkg = chrome.extension.getBackgroundPage();
 		var storageKey = 'settings';
 		var settingsDefaults = {
-			readOnView: true
+			readOnView: false
 		};
 		vm.settings = loadSettings(settingsDefaults);
 		vm.fn = {

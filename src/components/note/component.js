@@ -78,13 +78,30 @@
 
 			//stop if the note is already unread
 			if(!note.unread){ return; }
-			
+
 			//get setting for auto marking as read
+			var settings = loadSettings({
+				readOnView: false
+			});
 
 			//if auto marking read
+			if(settings.readOnView){
 				//check that this note wasn't already marked as unread by the user
 				//if not, mark it as read
 				toggleStatus(note);
+			}
+		}
+
+		//loads settings from storage OR sets defaults
+		function loadSettings(defaults) {
+			//get the localStorage settings as an object
+			var settings = JSON.parse(localStorage.settings || '{}');
+
+			//merge settings and defaults
+			settings = angular.extend(defaults, settings);
+
+			//send back the settings
+			return settings;
 		}
 
 		//find a mention within a string of text and make it a link
