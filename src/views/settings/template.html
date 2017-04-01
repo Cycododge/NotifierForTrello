@@ -1,22 +1,24 @@
 <!-- Header -->
-<div class="row mb-2">
+<div class="row mb-3">
 	<div class="col">
 		<a ui-sref="notifications">< Back</a>
 	</div>
 </div>
 
 <!-- Content -->
-<div class="row">
+<div class="row mb-3">
 	<!-- Unread on open -->
-	<!-- <div class="col-8">
-		Mark notifications read on view:
+	<div class="col-8">
+		Mark notifications read when viewed
 	</div>
-	<div class="col-4">
+	<div class="col-4 text-right">
 		<input type="checkbox" id="setting-01" /><label for="setting-01"></label>
-	</div> -->
+	</div>
+</div>
 
-	<!-- Logout -->
-	<div class="col-12 text-right">
+<!-- Logout -->
+<div class="row">
+	<div class="col mt-3 text-right">
 		<button type="button" class="btn btn-info btn-sm cursor-pointer" ng-click="vm.fn.logout()">Logout</button>
 	</div>
 </div>
