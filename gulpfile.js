@@ -35,7 +35,10 @@ var source = {
 			paths.dev + '**/directive.js',
 
 			//filters
-			paths.dev + '**/filter.js'
+			paths.dev + '**/filter.js',
+
+			//services
+			paths.dev + 'services/*.js'
 		],
 		vendor: [
 			paths.vendor + 'angular/angular.min.js',

@@ -5,14 +5,14 @@
 		.component('note',{
 			templateUrl: 'components/note/template.html',
 			controllerAs: 'vm',
-			controller: [controller],
+			controller: ['settingsService', controller],
 			bindings: {
 				note: '<'
 			}
 		});
 
 	//runs the component
-	function controller(){
+	function controller(settingsService){
 		//config
 		var vm = this,
 			bkg = chrome.extension.getBackgroundPage();
@@ -80,9 +80,7 @@
 			if(!note.unread){ return; }
 
 			//get setting for auto marking as read
-			var settings = loadSettings({
-				readOnView: false
-			});
+			var settings = settingsService.load();
 
 			//if auto marking read
 			if(settings.readOnView){
@@ -90,18 +88,6 @@
 				//if not, mark it as read
 				toggleStatus(note);
 			}
-		}
-
-		//loads settings from storage OR sets defaults
-		function loadSettings(defaults) {
-			//get the localStorage settings as an object
-			var settings = JSON.parse(localStorage.settings || '{}');
-
-			//merge settings and defaults
-			settings = angular.extend(defaults, settings);
-
-			//send back the settings
-			return settings;
 		}
 
 		//find a mention within a string of text and make it a link

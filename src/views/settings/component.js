@@ -5,20 +5,16 @@
 		.component('settings',{
 			templateUrl: 'views/settings/template.html',
 			controllerAs: 'vm',
-			controller: ['$state', controller]
+			controller: ['$state','settingsService', controller]
 		});
 
 	//runs the component
-	function controller($state){
+	function controller($state, settingsService){
 		//config
 		var vm = this;
 		var app = chrome.app.getDetails();
 		var bkg = chrome.extension.getBackgroundPage();
-		var storageKey = 'settings';
-		var settingsDefaults = {
-			readOnView: false
-		};
-		vm.settings = loadSettings(settingsDefaults);
+		vm.settings = settingsService.load();
 		vm.fn = {
 			logout: logout,
 			saveSettings: saveSettings
@@ -27,21 +23,9 @@
 
 		///////////////// FUNCTIONS /////////////////
 
-		//saves settings to local storage
+		//saves current settings
 		function saveSettings() {
-			localStorage[storageKey] = JSON.stringify(vm.settings);
-		}
-
-		//loads settings from storage OR sets defaults
-		function loadSettings(defaults) {
-			//get the localStorage settings as an object
-			var settings = JSON.parse(localStorage[storageKey] || '{}');
-
-			//merge settings and defaults
-			settings = angular.extend(defaults, settings);
-
-			//send back the settings
-			return settings;
+			settingsService.save(vm.settings);
 		}
 
 		//deauthorize the extension from Trello
