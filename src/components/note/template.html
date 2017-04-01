@@ -7,7 +7,7 @@
 	<div ng-if="vm.note.data.text" compile="vm.fn.parseMentions(vm.note.data.text) | trim" class="card-block p-2 note-content mb-2 mt-0 mx-2"></div>
 
 	<!-- Footer -->
-	<div class="card-block pb-1 pt-0 px-2 row note-footer">
+	<div in-view="vm.fn.checkAutoRead(vm.note, $inview)" in-view-options="{ throttle: 2500 }" class="card-block pb-1 pt-0 px-2 row note-footer">
 		<div class="col">
 			{{vm.note.date | human_date}}
 		</div>

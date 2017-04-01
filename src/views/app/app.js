@@ -4,7 +4,7 @@
 	//init angular
 	angular
 		//import modules
-		.module('app', ['ui.router'])
+		.module('app', ['ui.router', 'angular-inview'])
 
 		//disable angular debug
 		.config(['$compileProvider', function($compileProvider){

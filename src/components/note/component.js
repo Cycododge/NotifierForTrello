@@ -63,11 +63,29 @@
 		};
 		vm.fn = {
 			toggleStatus: toggleStatus,
-			parseMentions: parseMentions
+			parseMentions: parseMentions,
+			checkAutoRead: checkAutoRead
 		};
 
 
 		//////////////////// FUNCTIONS ////////////////////
+
+		//marks if note read if the setting is true
+		function checkAutoRead(note, isInView) {
+			console.log(isInView, note);
+			//stop if note is not in the view
+			if(!isInView){ return; }
+
+			//stop if the note is already unread
+			if(!note.unread){ return; }
+			
+			//get setting for auto marking as read
+
+			//if auto marking read
+				//check that this note wasn't already marked as unread by the user
+				//if not, mark it as read
+				toggleStatus(note);
+		}
 
 		//find a mention within a string of text and make it a link
 		function parseMentions(text) {

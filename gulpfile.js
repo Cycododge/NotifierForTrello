@@ -43,7 +43,8 @@ var source = {
 			paths.dev + 'js/jquery.js',
 			paths.dev + 'js/trello.custom.js',
 			paths.vendor + 'howler/dist/howler.min.js',
-			paths.vendor + 'moment/min/moment.min.js'
+			paths.vendor + 'moment/min/moment.min.js',
+			paths.vendor + 'angular-inview/angular-inview.js'
 		]
 	},
 	forDist: [
