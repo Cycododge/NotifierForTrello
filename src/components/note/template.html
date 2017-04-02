@@ -7,12 +7,12 @@
 	<div ng-if="vm.note.data.text" compile="vm.fn.parseMentions(vm.note.data.text) | trim" class="card-block p-2 note-content mb-2 mt-0 mx-2"></div>
 
 	<!-- Footer -->
-	<div in-view="vm.fn.checkAutoRead(vm.note, $inview)" in-view-options="{ throttle: 2500 }" class="card-block pb-1 pt-0 px-2 row note-footer">
+	<div in-view="vm.fn.autoStatus(vm.note, $inview)" class="card-block pb-1 pt-0 px-2 row note-footer">
 		<div class="col">
 			{{vm.note.date | human_date}}
 		</div>
 		<div class="col text-right text-danger status-toggle">
-			<span class="cursor-pointer mb-0 mr-1" ng-click="vm.fn.toggleStatus(vm.note)">Mark {{vm.note.unread ? 'Read' : 'Unread'}}</span>
+			<span class="cursor-pointer mb-0 mr-1" ng-click="vm.fn.manualStatus(vm.note)">Mark {{vm.note.unread ? 'Read' : 'Unread'}}</span>
 		</div>
 	</div>
 </div>

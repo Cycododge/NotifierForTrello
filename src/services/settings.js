@@ -7,7 +7,7 @@
 		//config
 		var storageKey = 'settings';
 		var defaults = {
-			readOnView: false
+			readOnView: true
 		};
 		var cachedSettings = load();
 

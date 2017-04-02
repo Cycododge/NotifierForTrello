@@ -62,16 +62,16 @@
 			makeAdminOfOrganization: '<user-link user="vm.note.memberCreator"></user-link> made you an admin of the organization <org-link data="vm.note.data"></org-link>'
 		};
 		vm.fn = {
-			toggleStatus: toggleStatus,
+			manualStatus: manualStatus,
 			parseMentions: parseMentions,
-			checkAutoRead: checkAutoRead
+			autoStatus: autoStatus
 		};
 
 
 		//////////////////// FUNCTIONS ////////////////////
 
-		//marks if note read if the setting is true
-		function checkAutoRead(note, isInView) {
+		//automatically mark a note read (based on settings)
+		function autoStatus(note, isInView) {
 			//stop if note is not in the view
 			if(!isInView){ return; }
 
@@ -80,9 +80,30 @@
 
 			//if auto marking read AND note is not excluded
 			if(settingsService.load().readOnView && !exclusionService.isExcluded(note.id)){
-				//mark note as read
-				toggleStatus(note);
+				//mark note as read in the service
+				updateServiceStatus(note, false);
 			}
+		}
+
+		//when the user initiates changing a note status
+		function manualStatus(note) {
+			//toggle the current status of the note in the UI
+			note.unread = !note.unread;
+
+			//if the user is marking this note as unread
+			if(note.unread){
+				//exclude it from auto read
+				exclusionService.exclude(note.id);
+			}
+
+			//if the user is marking as read
+			else{
+				//remove the note from list of exclusions
+				exclusionService.remove(note.id);
+			}
+
+			//update the notes status in the service
+			updateServiceStatus(note, note.unread);
 		}
 
 		//find a mention within a string of text and make it a link
@@ -108,22 +129,7 @@
 		}
 
 		//marks a note as read or unread
-		function toggleStatus(note){
-			//toggle the current status of the note
-			note.unread = !note.unread;
-
-			//if the user is marking this note as unread
-			if(note.unread){
-				//exclude it from auto read
-				exclusionService.exclude(note.id);
-			}
-
-			//if the user is marking as read
-			else{
-				//remove the note from list of exclusions
-				exclusionService.remove(note.id);
-			}
-
+		function updateServiceStatus(note, newStatus){
 			//update Trello with the new status
 			Trello
 				.put(
@@ -131,7 +137,7 @@
 					'notifications/' + note.id,
 
 					//update this field
-					{ unread: note.unread },
+					{ unread: newStatus },
 
 					//on success
 					function(){
