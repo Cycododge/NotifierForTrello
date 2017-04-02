@@ -5,14 +5,14 @@
 		.component('note',{
 			templateUrl: 'components/note/template.html',
 			controllerAs: 'vm',
-			controller: ['settingsService', controller],
+			controller: ['settingsService','exclusionService', controller],
 			bindings: {
 				note: '<'
 			}
 		});
 
 	//runs the component
-	function controller(settingsService){
+	function controller(settingsService, exclusionService){
 		//config
 		var vm = this,
 			bkg = chrome.extension.getBackgroundPage();
@@ -72,20 +72,15 @@
 
 		//marks if note read if the setting is true
 		function checkAutoRead(note, isInView) {
-			console.log(isInView, note);
 			//stop if note is not in the view
 			if(!isInView){ return; }
 
 			//stop if the note is already unread
 			if(!note.unread){ return; }
 
-			//get setting for auto marking as read
-			var settings = settingsService.load();
-
-			//if auto marking read
-			if(settings.readOnView){
-				//check that this note wasn't already marked as unread by the user
-				//if not, mark it as read
+			//if auto marking read AND note is not excluded
+			if(settingsService.load().readOnView && !exclusionService.isExcluded(note.id)){
+				//mark note as read
 				toggleStatus(note);
 			}
 		}
@@ -116,6 +111,18 @@
 		function toggleStatus(note){
 			//toggle the current status of the note
 			note.unread = !note.unread;
+
+			//if the user is marking this note as unread
+			if(note.unread){
+				//exclude it from auto read
+				exclusionService.exclude(note.id);
+			}
+
+			//if the user is marking as read
+			else{
+				//remove the note from list of exclusions
+				exclusionService.remove(note.id);
+			}
 
 			//update Trello with the new status
 			Trello

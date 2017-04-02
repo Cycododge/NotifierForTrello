@@ -5,14 +5,11 @@
 
 	.factory('settingsService', [function(){
 		//config
-		var cachedSettings = {};
 		var storageKey = 'settings';
 		var defaults = {
 			readOnView: false
 		};
-
-		//setup the service
-		init();
+		var cachedSettings = load();
 
 		//send back methods to play with
 		return {
@@ -20,13 +17,8 @@
 			load: load
 		};
 
-		///////////////// FUNCTIONS /////////////////
 
-		//sets up the service for first time use
-		function init() {
-			//grab settings from storage
-			cachedSettings = load();
-		}
+		///////////////// FUNCTIONS /////////////////
 
 		//save settings to localStorage
 		//@settings: object of settings to update
